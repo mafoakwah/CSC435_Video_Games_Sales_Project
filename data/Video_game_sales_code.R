@@ -16,5 +16,21 @@ dim(Video_Games_Sales)
 gamesales2010_2016 <- filter(Video_Games_Sales, Year_of_Release >= 2010)
 nrow(gamesales2010_2016)
 
+colnames(gamesales2010_2016)
+
 gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A")
 nrow(gamesales2010_2016)
+
+//platform NA sales
+platform_NA_Sales <- gamesales2010_2016 %>%
+  group_by(Platform) %>%
+  summarize(NA_total = sum(NA_Sales)) %>%
+  arrange(NA_total)
+view(platform_NA_Sales)
+
+//platform Global sales
+platform_glbl_sales <- gamesales2010_2016 %>%
+  group_by(Platform) %>%
+  summarize(glbl_total = sum(Global_Sales)) %>%
+  arrange(glbl_total)
+view(platform_glbl_sales)
