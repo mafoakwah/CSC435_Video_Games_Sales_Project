@@ -16,7 +16,7 @@ Suppose their is an investor who wants to invest in a gaming platform. However b
   * Which video game category had the highest NA sales?
   * Which video game category made the highest Global sales?
   * Which video game developer has the highest Global video game sales?
-  * Which video game categories are each developer most profitable in?
+  * Which video game genre is the top three developers most profitable in?
 
 
 ##3.Preparation
@@ -92,8 +92,8 @@ Now we are going to answer the questions that were mentioned in section 2:
   * Which video game platform made the most Global Sales from 2010 to      2016?
   * Which video game category had the highest NA sales?
   * Which video game category made the highest Global sales?
-  * Which video game developer has the highest Global video game sales?
-  * Which video game categories are each developer most profitable in?
+  * Which top 5 video game developers have the highest Global video game sales?
+  * Which video game genre is the top three developers most profitable in
 
 5.1 To answer the first question we have to calculate the NA revenue of each platform.
 ```platform_NA_Sales <- gamesales2010_2016 %>%
@@ -101,10 +101,9 @@ Now we are going to answer the questions that were mentioned in section 2:
   summarize(NA_total = sum(NA_Sales)) %>%
   arrange(NA_total)
   view(platform_NA_Sales)
-    
-```
+  ```
 
-5.2 Now, we answer the second question, which means calculating the global revenue for each platform.
+5.2 Secondly, we calculate the global revenue for each platform.
 ```platform_glbl_sales <- gamesales2010_2016 %>%
   group_by(Platform) %>%
   summarize(glbl_total = sum(Global_Sales)) %>%
@@ -112,5 +111,31 @@ Now we are going to answer the questions that were mentioned in section 2:
 view(platform_glbl_sales)
 ```
 
+5.3 Then, we calculate the NA revenue based on categories.
+```cat_na_sales <- gamesales2010_2016 %>%
+  group_by(Genre) %>%
+  summarise(cat_na_total = sum(NA_Sales)) %>%
+  arrange(cat_na_total)
+view(cat_na_sales)```
 
+5.4 Now, we calculate the Global revenue based on categories.
+```cat_glbl_sales <-gamesales2010_2016 %>%
+  group_by(Genre) %>%
+  summarise(cat_glbl_total = sum(Global_Sales)) %>%
+  arrange(cat_glbl_total)
+view(cat_glbl_sales)
+```
+
+5.5 After, we want to calculate the global revenue based on the developer.
+
+```dev_global <- gamesales2010_2016 %>%
+  filter(Developer != "N/A") %>%
+  group_by(Developer) %>%
+  summarise(global_total = sum(Global_Sales)) %>%
+  arrange(-global_total) %>%
+  slice_head(n = 5)
+view(dev_global)
+```
+
+5.6 Finally, we want to find what video game categories are mainly developed by the top three developers and how the revenue in these categories differ.
 
