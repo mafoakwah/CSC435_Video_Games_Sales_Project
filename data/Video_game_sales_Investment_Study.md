@@ -12,7 +12,7 @@ Suppose their is an investor who wants to invest in a gaming platform. However b
 ##2.Preparation
   The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that this dataset was      scraped from VGChartz and Metacritic.
 
-3.1 Load Tidyverse package
+2.1 Load Tidyverse package
 
 ```#install.packages("Tidyverse")
   library(tidyverse)
@@ -23,13 +23,13 @@ library(readr)
 ```
 
 
-3.2 Import dataset  
+2.2 Import dataset  
 
 ```{r}
 Video_Games_Sales <- read_csv("data/Video_Games_Sales_as_at_22_Dec_2016.csv")
 ```
 
-3.3 Preview dataset
+2.3 Preview dataset
 ```{r}
 View(Video_Games_Sales)
 ```
@@ -75,7 +75,7 @@ gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A")
 nrow(gamesales2010_2016)
 ```
 
-##5. Data Exploration
+##4. Data Exploration
 We now develop questions to explore the data set.
   * Which video game platform made the most NA Sales from 2010 to 2016?
   * Which video game platform made the most Global Sales from 2010 to 2016?
@@ -84,7 +84,7 @@ We now develop questions to explore the data set.
   * Which top 5 video game developers have the highest Global video game sales?
   * Which video game genre is the top three developers most profitable in
 
-5.1 To answer the first question we have to calculate the NA revenue of each platform.
+4.1 To answer the first question we have to calculate the NA revenue of each platform.
 ```platform_NA_Sales <- gamesales2010_2016 %>%
   group_by(Platform) %>%
   summarize(NA_total = sum(NA_Sales)) %>%
@@ -92,7 +92,7 @@ We now develop questions to explore the data set.
   view(platform_NA_Sales)
   ```
 
-5.2 Secondly, we calculate the global revenue for each platform.
+4.2 Secondly, we calculate the global revenue for each platform.
 ```platform_glbl_sales <- gamesales2010_2016 %>%
   group_by(Platform) %>%
   summarize(glbl_total = sum(Global_Sales)) %>%
@@ -100,14 +100,14 @@ We now develop questions to explore the data set.
 view(platform_glbl_sales)
 ```
 
-5.3 Then, we calculate the NA revenue based on categories.
+4.3 Then, we calculate the NA revenue based on categories.
 ```cat_na_sales <- gamesales2010_2016 %>%
   group_by(Genre) %>%
   summarise(cat_na_total = sum(NA_Sales)) %>%
   arrange(cat_na_total)
 view(cat_na_sales)```
 
-5.4 Now, we calculate the Global revenue based on categories.
+4.4 Now, we calculate the Global revenue based on categories.
 ```cat_glbl_sales <-gamesales2010_2016 %>%
   group_by(Genre) %>%
   summarise(cat_glbl_total = sum(Global_Sales)) %>%
@@ -115,7 +115,7 @@ view(cat_na_sales)```
 view(cat_glbl_sales)
 ```
 
-5.5 After, we want to calculate the global revenue based on the developer.
+4.5 After, we want to calculate the global revenue based on the developer.
 
 ```dev_global <- gamesales2010_2016 %>%
   filter(Developer != "N/A") %>%
@@ -126,5 +126,5 @@ view(cat_glbl_sales)
 view(dev_global)
 ```
 
-5.6 Finally, we want to find what video game categories are mainly developed by the top three developers and how the revenue in these categories differ.
+4.6 Finally, we want to find what video game categories are mainly developed by the top three developers and how the revenue in these categories differ.
 
