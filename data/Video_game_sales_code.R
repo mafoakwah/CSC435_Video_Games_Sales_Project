@@ -66,6 +66,8 @@ dev_genre_global <- gamesales2010_2016 %>%
   group_by(Genre, Developer) %>%
   summarise(devcat_total = sum(Global_Sales)) %>%
   arrange(-devcat_total)
+view(dev_genre_global)
+
 
 
 ######

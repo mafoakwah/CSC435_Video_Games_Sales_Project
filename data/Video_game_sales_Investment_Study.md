@@ -127,4 +127,12 @@ view(dev_global)
 ```
 
 4.6 Finally, we want to find what video game categories are mainly developed by the top three developers and how the revenue in these categories differ.
+```dev_genre_global <- gamesales2010_2016 %>%
+  filter(Developer != "N/A") %>%
+  filter(Genre != "N/A") %>%
+  group_by(Genre, Developer) %>%
+  summarise(devcat_total = sum(Global_Sales)) %>%
+  arrange(-devcat_total)
+view(dev_genre_global)
+```
 
