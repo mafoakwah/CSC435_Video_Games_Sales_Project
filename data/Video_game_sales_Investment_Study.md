@@ -127,4 +127,4 @@ view(dev_global)
 ```
 
 5.6 Finally, we want to find what video game categories are mainly developed by the top three developers and how the revenue in these categories differ.
-hello
+

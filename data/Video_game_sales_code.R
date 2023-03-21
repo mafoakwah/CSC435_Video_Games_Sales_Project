@@ -62,10 +62,13 @@ view(dev_global)
 #developer profit based on genre
 dev_genre_global <- gamesales2010_2016 %>%
   filter(Developer != "N/A") %>%
-  group_by(Developer) %>%
+  filter(Genre != "N/A") %>%
+  group_by(Genre, Developer) %>%
   summarise(devcat_total = sum(Global_Sales)) %>%
   arrange(-devcat_total)
 
+
+######
 dev_gen <- gamesales2010_2016 %>%
   filter(Developer != "N/A") %>%
   group_by(Genre, Developer) %>%
