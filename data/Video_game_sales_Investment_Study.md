@@ -9,17 +9,7 @@ date: "2023-03-18"
             
 Suppose their is an investor who wants to invest in a gaming platform. However before the       investor invests, they want to know which gaming platform between the years 2010 to 2016 has the best NA, EU, and Global sales. The investor also wants to know what video game category produces the most income between 2010 and 2016 while for each video game platform so that they can better invest their money to better profit themselves in the future.The investor also wants to see what developers create more profitable games and the video game categories those developers mainly develop. The investor wants an indepth analyst on the video game platforms, video game categories, and developers before they invest their money. 
 
-##2. Questions
-
-  * Which video game platform made the most NA Sales from 2010 to 2016?
-  * Which video game platform made the most Global Sales from 2010 to      2016?
-  * Which video game category had the highest NA sales?
-  * Which video game category made the highest Global sales?
-  * Which video game developer has the highest Global video game sales?
-  * Which video game genre is the top three developers most profitable in?
-
-
-##3.Preparation
+##2.Preparation
   The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that this dataset was      scraped from VGChartz and Metacritic.
 
 3.1 Load Tidyverse package
@@ -67,29 +57,28 @@ length(Video_Games_Sales)
 dim(Video_Games_Sales)
 ```
 
-##4. Data Cleaning
+##3. Data Cleaning
 
 We will be using cleaning data using data transformations.
 
-4.1 Since we are focusing on the video game sales between 2010 to 2016 we will shrink the data set by filtering it.
+3.1 Since we are focusing on the video game sales between 2010 to 2016 we will shrink the data set by filtering it.
 
 ```{r}
 gamesales2010_2016 <- filter(Video_Games_Sales, Year_of_Release >= 2010)
 nrow(gamesales2010_2016)
 ```
 
-4.2 We will now filter all rows where the Year_of_Release is unknown.
+3.2 We will now filter all rows where the Year_of_Release is unknown.
 
 ```{r}
 gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A")
 nrow(gamesales2010_2016)
 ```
 
-##5. Analyzing 
-
-Now we are going to answer the questions that were mentioned in section 2:
+##5. Data Exploration
+We now develop questions to explore the data set.
   * Which video game platform made the most NA Sales from 2010 to 2016?
-  * Which video game platform made the most Global Sales from 2010 to      2016?
+  * Which video game platform made the most Global Sales from 2010 to 2016?
   * Which video game category had the highest NA sales?
   * Which video game category made the highest Global sales?
   * Which top 5 video game developers have the highest Global video game sales?
