@@ -1,9 +1,9 @@
 ---
 title: "Video Game Sales Investment Study"
 output:
-  pdf_document: default
-  html_document: default
   word_document: default
+  html_document: default
+  pdf_document: default
 date: "March 28th, 2023"
 ---
 
@@ -33,7 +33,7 @@ The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that thi
 Now we want to use import our dataset into R using the read_CSV function that is from our readr package.
 
 ```{r}
-Video_Games_Sales <- read_csv("C:/Users/Matthew Afoakwah/OneDrive/Documents/Bport/Bport Spring 2023 (Final Semester!)/CSC435 Data Analytics/Project/CSC435_Video_Games_Sales_Project/data/Video_Games_Sales_as_at_22_Dec_2016.csv") #Reads the CSV file from the file location and imports the file into R, named Video_Games_Sales
+Video_Games_Sales <- read_csv("C:/Users/Matthew Afoakwah/OneDrive/Documents/Bport/Bport Spring 2023/CSC435 Data Analytics/Project/CSC435_Video_Games_Sales_Project/data/Video_Games_Sales_as_at_22_Dec_2016.csv") #Reads the CSV file from the file location and imports the file into R, named Video_Games_Sales
 ```
 
 2.3 Preview dataset Before we can work on our dataset, we must first see if the dataset is relivant to our task. In order to accomplish this we must explore the dataset in R.
@@ -78,6 +78,7 @@ Though we can see that our data set has information that can be used for our pro
 gamesales2010_2016 <- filter(Video_Games_Sales, Year_of_Release >= 2010) #We use the filter() function to remove all rows where the release year is not between 2010 and 2016. Then we store it in a new data set called gamesales2010_2016
   
 dim(gamesales2010_2016) #We use the dim() function and see that the amount of rows in the data set has decreased from 16719 to 5550.
+
 ```
 
 3.2 We will now filter all rows where the Year_of_Release is unknown.\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
@@ -86,31 +87,40 @@ dim(gamesales2010_2016) #We use the dim() function and see that the amount of ro
 gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A") #The filter() function removes all values that are "N/A" in the Year_of_Release column
 nrow(gamesales2010_2016) #nrow() prints out the number of rows in gamesales2010_2016.
 ```
+
 We have decided to remove all rows where the Year_of_Release is "N/A" because there are not too much "N/A" value's missing in the Year_of_Release column which would greatly impact our data set, because of this we are able to easily remove the "N/A" values from the data set without having to worry about our results being greatly influenced.
 
-3.3 We want to identify any outliers that are in our data set before we can continue any further. To accomplish this what we want to do is use a boxplot graph to identify any outliers in the graph. Because the numeric columns we will be focusing on are Global and NA Sales we will only look for outliers in these two columns. 
+3.3 We want to identify any outliers that are in our data set before we can continue any further. To accomplish this what we want to do is use a boxplot graph to identify any outliers in the graph. Because the numeric columns we will be focusing on are Global and NA Sales we will only look for outliers in these two columns.
+
 ```{r}
 boxplot(gamesales2010_2016$Global_Sales, main = "Global Sales BoxPlot")
 outliers <- boxplot.stats(gamesales2010_2016$Global_Sales)$out
 ```
-We can see that there are some outliers in the Global Sales, this allows us to easily remove them from our data set. However we will not remove them as they will also not affect our progress moving forward.
-Now, we will check the outliers for the NA Sales.
+
+We can see that there are some outliers in the Global Sales, this allows us to easily remove them from our data set. However we will not remove them as they will also not affect our progress moving forward. Now, we will check the outliers for the NA Sales.
+
 ```{r}
 boxplot(gamesales2010_2016$NA_Sales, main = "NA Sales BoxPlot")
 outliersNA <- boxplot.stats(gamesales2010_2016$NA_Sales)$out
 ```
-Just like our Global Sales, we see that there are not many outliers in the NA sales either, because of how big the data set is having these outliers will hardly impact the progress of our data set and allows us to keep these outliers and move on to our next step.
 
+Just like our Global Sales, we see that there are not many outliers in the NA sales either, because of how big the data set is having these outliers will hardly impact the progress of our data set and allows us to keep these outliers and move on to our next step.
 
 ## 4. Data Exploration
 
-We now develop questions to explore the data set even further. 
-  * Which video game platform made the most NA Sales from 2010 to 2016? 
-  * Which video game platform made the most Global Sales from 2010 to 2016? 
-  * Which video game category had the highest NA sales? 
-  * Which video game category made the highest Global sales? 
-  * Which top five video game developers have the highest Global video game sales? 
-  * Which video game genre is the top five developers most profitable in?
+We now develop questions to explore the data set even further. \*
+
+1.  Which video game platform made the most NA Sales from 2010 to 2016? \*
+
+2.  Which video game platform made the most Global Sales from 2010 to 2016?
+
+3.  Which video game category had the highest NA sales? \*
+
+4.  Which video game category made the highest Global sales? \*
+
+5.  Which top five video game developers have the highest Global video game sales?
+
+6.  Which video game genre is the top five developers most profitable in?
 
 4.1 Before we can go and answer the questions we first want to explore the unique attributes in the platform column to see if there are any discrepancies that need to be fixed.
 
@@ -237,13 +247,9 @@ Fortunately, there is no N/A variables in the Genre column so we can continue on
 head(df) #We preview the data set.
 ```
 
-##5 Analyzing
+## 5. Analyzing
 
-Now that we have cleaned the data set and explored the data set we can now analyze the data set using visualization. In this section we will use multiple different graphs which helps us identify and analyze our data to help the client understand where they would receive the most profit.  
-
-
-
-
+Now that we have cleaned the data set and explored the data set we can now analyze the data set using visualization. In this section we will use multiple different graphs which helps us identify and analyze our data to help the client understand where they would receive the most profit.
 
 5.4 We now wan to create some visualizations for our third question to better understand the NA sales for each genre in 2010 to 2016.
 
@@ -311,8 +317,7 @@ ggplot(dev_global, aes(x = "", y = global_total, fill = Developer)) + geom_col(s
 
 Overall, this code generates a pie chart that ranks the top 5 video game developers by their total global sales across all regions. The bars are arranged radially, with the outermost bar representing the developer with the highest total sales. The plot has no axis labels or grid lines, giving it a minimalist look.
 
-Analysis: 
-The first bar graph shows the order of the top 5 game developers in terms of the number of game copies sold. In ascending order, the top 5 game developers are Ubisoft, EA Sports, Nintendo, Treyarch, and Rockstar North. The pie chart provides another visualization for this ranking.
+Analysis: The first bar graph shows the order of the top 5 game developers in terms of the number of game copies sold. In ascending order, the top 5 game developers are Ubisoft, EA Sports, Nintendo, Treyarch, and Rockstar North. The pie chart provides another visualization for this ranking.
 
 5.7 We are now going to create some visuals for our sixth question in order to analyze our findings. developer_genre_sales
 
@@ -344,5 +349,4 @@ ggplot(data = df, aes(x = Genre, y = developer_glbl_total, colour = Developer)) 
 
 Overall this code creates a scatter plot that shows how most categories are similar in sales. However it also shows that When it comes to Sports games, EA Games make far more profit then any other categories.
 
-Analysis: 
-These visualizations represent the sales the top 5 game developers have earned per video game genre. Rockstar North and Treyarch develop exclusively Action and Shooter games respectively, meaning they have only sold games in those genres. EA Sports is almost the same however, they have developed at least one game in the racing genre. Nonetheless, most of the game copies EA Sports has sold are in the sports genre. Ubisoft has more diversity than the previous 3 developers, but it is visible that they have sold mostly action games or games that do not fall in any of the named genres. Nintendo is visibly the most diverse out of the 5 developers in terms of genre, with their most successful genre being platforms.
+Analysis: These visualizations represent the sales the top 5 game developers have earned per video game genre. Rockstar North and Treyarch develop exclusively Action and Shooter games respectively, meaning they have only sold games in those genres. EA Sports is almost the same however, they have developed at least one game in the racing genre. Nonetheless, most of the game copies EA Sports has sold are in the sports genre. Ubisoft has more diversity than the previous 3 developers, but it is visible that they have sold mostly action games or games that do not fall in any of the named genres. Nintendo is visibly the most diverse out of the 5 developers in terms of genre, with their most successful genre being platforms.
