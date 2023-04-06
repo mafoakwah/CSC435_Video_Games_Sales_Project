@@ -1,14 +1,16 @@
 ---
 title: "Video Game Sales Investment Study"
 output:
-  word_document: default
-  html_document: default
   pdf_document: default
+  html_document: default
+  word_document: default
 date: "March 28th, 2023"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(formatR)
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE, echo = TRUE)
+
 ```
 
 ## 1. Scenerio
@@ -23,7 +25,7 @@ The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that thi
 
 ```{r}
 #install.packages("Tidyverse")
-
+library(formatR)
   library(tidyverse) #Used to load tidyverse package into R.
   
   library(readr) #Used to load readr package in R to use to read CSV file.
@@ -32,38 +34,43 @@ The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that thi
 2.2 Import dataset\
 Now we want to use import our dataset into R using the read_CSV function that is from our readr package.
 
-```{r}
+```{r }
 Video_Games_Sales <- read_csv("C:/Users/Matthew Afoakwah/OneDrive/Documents/Bport/Bport Spring 2023/CSC435 Data Analytics/Project/CSC435_Video_Games_Sales_Project/data/Video_Games_Sales_as_at_22_Dec_2016.csv") #Reads the CSV file from the file location and imports the file into R, named Video_Games_Sales
 ```
 
 2.3 Preview dataset Before we can work on our dataset, we must first see if the dataset is relivant to our task. In order to accomplish this we must explore the dataset in R.
 
 ```{r}
-head(Video_Games_Sales) #we use the head() function to get a preview of the dataset.
+#we use the head() function to get a preview of the dataset.
+head(Video_Games_Sales) 
 ```
 
 We have now seen some of the data set but before we can verify that the data set is relevant we must explore the data set further. To accomplish this we use the glimpse() function
 
 ```{r}
-glimpse(Video_Games_Sales) #shows a glimpse of the data set along with the attributes.
+ #shows a glimpse of the data set along with the attributes.
+glimpse(Video_Games_Sales)
 ```
 
 Now we want to look at all the columns within the data set. We accomplish this using the colnames() function.
 
 ```{r}
-colnames(Video_Games_Sales) #Shows the name of the columns in the Video_Games_Sales data set.
+#Shows the name of the columns in the Video_Games_Sales data set.
+colnames(Video_Games_Sales) 
 ```
 
 Now we want to determine the size of the data set so we use the dim() function to determine the data sets size
 
 ```{r}
-dim(Video_Games_Sales) #After using the dim() function we see that the length of the data set is 16 and that there is 16719 rows.
+#After using the dim() function we see that the length of the data set is 16 and that there is 16719 rows.
+dim(Video_Games_Sales) 
 ```
 
 To continue our exploration we wish to see the data type of each column, in order to accomplish this we use the class function.
 
 ```{r}
-sapply(Video_Games_Sales, class) #We use the sapply() function to apply the class function on each attribute of our data set. 
+#We use the sapply() function to apply the class function on each attribute of our data set. 
+sapply(Video_Games_Sales, class) 
 ```
 
 From viewing our data set we see that our data set is relevant to our task and has given us insight to our data set which will allow us to move on to the next step.
@@ -75,9 +82,11 @@ Though we can see that our data set has information that can be used for our pro
 3.1 Since we are focusing on the video game sales between 2010 to 2016 we will shrink the data set by filtering it.
 
 ```{r}
-gamesales2010_2016 <- filter(Video_Games_Sales, Year_of_Release >= 2010) #We use the filter() function to remove all rows where the release year is not between 2010 and 2016. Then we store it in a new data set called gamesales2010_2016
-  
-dim(gamesales2010_2016) #We use the dim() function and see that the amount of rows in the data set has decreased from 16719 to 5550.
+#use the filter() function to remove all rows where the release year is not between 2010 and 2016.
+#Then we store it in a new data set called gamesales2010_2016
+gamesales2010_2016 <- filter(Video_Games_Sales, Year_of_Release >= 2010)  
+#We use the dim() function and see that the amount of rows in the data set. 
+dim(gamesales2010_2016) 
 
 ```
 
@@ -94,7 +103,7 @@ We have decided to remove all rows where the Year_of_Release is "N/A" because th
 
 3.3 We want to find and remove any duplicated files so we use the duplicated() function.
 ```{r}
-#We use the duplicated() to find all rows where they are repeated occurences then we use the ! to filter them out from the graph.
+#We use the duplicated() to find all rows where they are repeated occurences. #Then we use the ! to filter them out from the graph.
 gamesales2010_2016 <- gamesales2010_2016[!duplicated(gamesales2010_2016), ]
 #We use #nrow() function to see the amount of rows left in the data set.
 nrow(gamesales2010_2016)
@@ -105,6 +114,7 @@ After checking/removing all duplicated files in the data set we see view how man
 3.4 We want to identify any outliers that are in our data set before we can continue any further. To accomplish this what we want to do is use a boxplot graph to identify any outliers in the graph. Because the numeric columns we will be focusing on are Global and NA Sales we will only look for outliers in these two columns.
 
 ```{r}
+
 boxplot(gamesales2010_2016$Global_Sales, main = "Global Sales BoxPlot")
 outliers <- boxplot.stats(gamesales2010_2016$Global_Sales)$out
 ```
@@ -137,7 +147,8 @@ We now develop questions to explore the data set even further. \*
 4.1 Before we can go and answer the questions we first want to explore the unique attributes in the platform column to see if there are any discrepancies that need to be fixed.
 
 ```{r}
-unique(gamesales2010_2016$Platform) #unique function lists the unique characters in the platform column.
+#unique function lists the unique characters in the platform column.
+unique(gamesales2010_2016$Platform) 
 ```
 
 From looking at the unique attributes in the platform column we do not have any irregularities that might need to be rewritten and we can now continue to answer the first question.
@@ -145,60 +156,81 @@ From looking at the unique attributes in the platform column we do not have any 
 4.2 In order to answer the first question we must calculate the NA revenue for each platform.
 
 ```{r}
-platform_NA_Sales <- gamesales2010_2016 %>% #We move the gamesales2010_2016 data into a new data set then pipe the command. 
-  group_by(Platform) %>% # we use the group_by() function to group all the platforms in the platform_NA_Sales together, then we pipe again.
-  summarize(NA_total = sum(NA_Sales)) %>% #we use the summarize function to summarize the sum of NA_sales for each different platform. 
-  arrange(desc(NA_total)) #We arrange the data set by decreasing order according to the NA_total.
-  head(platform_NA_Sales) #We use the head() function to preview the new data set.
+#We move the gamesales2010_2016 data into a new data set.
+platform_NA_Sales <- gamesales2010_2016 %>% 
+#We use the group_by() to group all the platforms in the platform_NA_Sales together.  
+  group_by(Platform) %>% 
+#We use the summarize() to summarize the sum of NA_sales for each different platform.
+  summarize(NA_total = sum(NA_Sales)) %>%  
+#We arrange the data set by decreasing order according to the NA_total.
+  arrange(desc(NA_total)) 
+#We use the head() function to preview the new data set.
+  head(platform_NA_Sales) 
 ```
 
 4.3 Secondly, we calculate the global revenue for each platform.
 
 ```{r}
-platform_glbl_sales <- gamesales2010_2016 %>% #We move the gamesales2010_2016 data into a new data set then pipe the command. 
-  group_by(Platform) %>% # we use the group_by() function to group all the platforms in the platform_glbl_sales together, then we pipe again.
-  summarize(glbl_total = sum(Global_Sales)) %>% #we use the summarize function to summarize the sum of Global_sales for each different platform. 
-  arrange(desc(glbl_total)) #We arrange the data set by decreasing order according to the glbl_total.
-head(platform_glbl_sales) #We use the head() function to preview the table.
+#We move the gamesales2010_2016 data into a new data set then pipe the command.
+platform_glbl_sales <- gamesales2010_2016 %>% 
+#We use the group_by() to group all the platforms together.
+  group_by(Platform) %>%
+#We use the summarize function to summarize the sum of Global_sales for each different platform.
+  summarize(glbl_total = sum(Global_Sales)) %>% 
+#We arrange the data set by decreasing order according to the glbl_total.  
+  arrange(desc(glbl_total)) 
+#We use the head() function to preview the table.
+head(platform_glbl_sales) 
 ```
 
 4.4 Now, we want to calculate the NA revenue based on genre.but before we can do that we must see if there are any dependencies with the character values in genre.
 
 ```{r}
-unique(gamesales2010_2016$Genre) # We use the unique function to search for any irregular values in the categories column.
+#We use the unique to search for any irregular values in the categories column.
+unique(gamesales2010_2016$Genre) 
 ```
 
 After using the unique() function we see that there are not really any irregularities in the function which allows us to continue to calculate the NA revenue based on genre.
 
 ```{r}
-genre_na_sales <- gamesales2010_2016 %>% #We move the gamesales2010_2016 data into a new data set then pipe the command. 
-  group_by(Genre) %>% # we use the group_by() function to group all the Genres in the genre_na_sales together, then we pipe again.
-  summarise(genre_na_total = sum(NA_Sales)) %>% #we use the summarize function to summarize the sum of na_sales for each different genre. 
-  arrange(desc(genre_na_total))#We arrange the data set by decreasing order according to the genre_na_total.
-head(genre_na_sales) #We use the head() function to preview the table.
+#We move the gamesales2010_2016 data into a new data set.
+genre_na_sales <- gamesales2010_2016 %>% 
+#We use the group_by() to group all the Genres together.
+  group_by(Genre) %>%  
+#We use summarize() to summarize the sum of na_sales for each different genre.
+  summarise(genre_na_total = sum(NA_Sales)) %>%  
+#We arrange the data set by decreasing order according to the genre_na_total.
+  arrange(desc(genre_na_total))
+#We use the head() function to preview the table.
+head(genre_na_sales) 
 ```
 
 4.5 We now want to calculate the Global revenue based on categories.
 
 ```{r}
-genre_glbl_sales <-gamesales2010_2016 %>% #We move the gamesales2010_2016 data into a new data set then pipe the command. 
-  group_by(Genre) %>%  # we use the group_by() function to group all the Genres in the genre_glbl_sales together, then we pipe again.
-  summarise(genre_glbl_total = sum(Global_Sales)) %>% #we use the summarize function to summarize the sum of Global_sales for each different genre. 
-  arrange(desc(genre_glbl_total))#We arrange the data set by decreasing order according to the genre_na_total.
-head(genre_glbl_sales)#We use the head() function to preview the table.
+#We move the gamesales2010_2016 data into a new data set then pipe the command.
+genre_glbl_sales <-gamesales2010_2016 %>% 
+#We use group_by() to group all the Genres in the genre_glbl_sales together.
+  group_by(Genre) %>%  
+#We use summarize() to summarize the sum of Global_sales for each different genre.
+  summarise(genre_glbl_total = sum(Global_Sales)) %>%  
+#We arrange the data set by decreasing order according to the genre_na_total.
+  arrange(desc(genre_glbl_total))
+#We use the head() function to preview the table.
+head(genre_glbl_sales)
 ```
 
 4.6 Before we can attempt to calculate NA and Global sales based on developer we must first deterine whether there are any irregularities in the Developer column.
 
 ```{r}
-unique_dev <- sort(unique(gamesales2010_2016$Developer)) #We take all unique values in the developer column then we sort them. 
+#We use unique() to take all unique values in the developer column then sort them. 
+unique_dev <- sort(unique(gamesales2010_2016$Developer)) 
 ```
 
 After placing all the unique values from the Developer column of the data set gamesales2010_2016 in a new set, we see that there are over 800 different values and there's bound to be some missed spelled values so we review all the unique values and change their names to match what we want it to be. There are some values who may have be in a different region but are part of a company but because we want the overall of a company we change the different region companies to match its parent company as well.
 
 ```{r}
 #We use the recode() function from the dplyr package from our tidyverse package in order change our variables.
-
 gamesales2010_2016$Developer <- recode(gamesales2010_2016$Developer,"1C: Maddox Games" ="1C Company", "1C:Ino-Co" = "1C Company","2K Australia" = "2K Games", "2K Czech" = "2K Games", "2K Sports" = "2K Games", "2K Marin" = "2K Games", "2K Play" = "2K Games", "505 Games, Sarbakan Inc." = "505 Games", "Activision, Behaviour Interactive" = "Activision", "Activision, FreeStyleGames" = "Activision", "Ambrella, The Pokemon Company" = "Ambrella", "Armature Studio, comcept" = "Armature Studio", "Artificial Mind and Movement, EA Redwood Shores" = "Artificial Mind and Movement", "Atari, Atari SA" = "Atari", "Atari, Slightly Mad Studios, Atari SA" = "Atari", "Atlus, Dingo Inc." = "Atlus", "Atomic Planet Entertainment" = "Atomic Games", "Avalanche Software" = "Avalanche Studios", "Bandai Namco Games, Artdink" = "Bandai Namco Games", "Beenox, Other Ocean Interactive" = "Beenox", "Big Blue Bubble Inc., Scholastic, Inc." = "Big Blue Bubble Inc.", "Big Blue Bubble Inc., Scholastic, Inc." = "Big Blue Bubble Inc.", "Blitz Games Studios" = "Blitz Games", "Blue Byte, Related Designs" = "Blue Byte", "Bungie Software, Bungie" = "Bungie", "Capcom Vancouver" = "Capcom", "Capcom, Pipeworks Software, Inc." = "Capcom")
 
 gamesales2010_2016$Developer <- recode(gamesales2010_2016$Developer, "Capcom, QLOC" = "Capcom", "Climax Entertainment" = "Climax Studios", "Climax Group" = "Climax Studios", "Climax Group, Climax Studios" = "Climax Studios", "Codemasters Birmingham" = "Codemasters", "Compile Heart, GCREST" = "Compile Heart", "Crave, DTP Entertainment" = "Crave", "Crystal Dynamics, Nixxes Software" = "Crystal Dynamics", "Cyanide, Cyanide Studios" = "Cyanide", "CyberConnect2, Racjin" = "CyberConnect2", "CyberPlanet Interactive Public Co., Ltd., Maximum Family Games" = "CyberPlanet Interactive Public Co., Ltd.", "Deep Silver Dambuster Studios" = "Deep Silver", "Deep Silver, Keen Games" = "Deep Silver", "Dimps Corporation, Dream Execution" = "Dimps Corporation", "Dimps Corporation, SCE Japan Studio" = "Dimps Corporation", "Disney Interactive Studios, Land Ho!" = "Disney Interactive Studios", "EA Black Box" = "EA Games", "EA Bright Light" = "EA Games", "EA Canada" = "EA Games", "EA Canada, EA Vancouver" = "EA Games" , "EA DICE" = "EA Games", "EA DICE, Danger Close" = "EA Games")
@@ -225,12 +257,18 @@ Because of how much values are in the Developer column there was many values tha
 
 ```{r}
 dev_global <- gamesales2010_2016 %>% 
-  filter(Developer != "N/A") %>% #We want to filter out any unknown Developers as there are so few NA developers that will affect our variables.
-  group_by(Developer) %>% #We will then group the columns according to the value in the developer columns.
-  summarise(global_total = sum(Global_Sales)) %>% #We sum up the total global sales and NA sales of each developers games earned.
-  arrange(desc(global_total)) %>% #We then arrange each row in descending order based on the global_total.
-  slice_head(n = 5) #We use the slice_head() function to take ONLY the top five most profitable developers.
-head(dev_global) #We preview the data set.
+#We want to filter out any unknown Developers as there are so few NA developers that will affect our variables.
+  filter(Developer != "N/A") %>% 
+#We will then group the columns according to the value in the developer columns.
+  group_by(Developer) %>% 
+#We sum up the total global sales and NA sales of each developers games earned.
+  summarise(global_total = sum(Global_Sales)) %>% 
+#We then arrange each row in descending order based on the global_total.
+  arrange(desc(global_total)) %>% 
+#We use the slice_head() function to take ONLY the top five most profitable developers.
+  slice_head(n = 5) 
+#We preview the data set.
+head(dev_global) 
 ```
 
 4.8 Finally, we want to determine the video game categories that are mainly developed by the top three developers and how the revenue in these categories differ.
@@ -238,25 +276,34 @@ head(dev_global) #We preview the data set.
 From the previous example we were able to already determine the top 5 developers, so if we use the information from the previous table we know that "EA Games", "Ubisoft", "Nintendo", "Rockstar Studios", and "Treyarch" are the top five developers, this allows us to create a new table which filters any developers that aren't those three developers.
 
 ```{r}
+#We create a table which shows video games where the developers are the top five developers.
 developer_genre_sale <- gamesales2010_2016 %>%
-  filter(Developer %in% c("EA Games", "Ubisoft", "Nintendo", "Rockstar Studios", "Treyarch")) #We create a table which shows video games where the developers are the top five developers.
-  head(developer_genre_sale) # We use this to preview the data set.
+  filter(Developer %in% c("EA Games", "Ubisoft", "Nintendo", "Rockstar Studios", "Treyarch"))
+ #We use this to preview the data set.
+  head(developer_genre_sale)
 ```
 
 Now that we have isolated the video games that are developed by the top five developers we can now group all the data by genre and developer and calculate the global sale and NA sale based on the the the genre. but first we must confirm the amount of N/A values in our Genre column to see if those N/A's will affect our results.
 
 ```{r}
-sum(is.na(developer_genre_sale$Genre)) #We use the is.na() function to determine if any values in Genre is N/A then use the sum() function to count the exact number of N/A values.
+#We use is.na() to determine if any values in Genre is N/A.
+#Then use sum() to count the exact number of N/A values.
+sum(is.na(developer_genre_sale$Genre)) 
 ```
 
 Fortunately, there is no N/A variables in the Genre column so we can continue on with manipulating the data set.
 
 ```{r}
- df <- developer_genre_sale %>% #We store the developer_genre_sale data into df.
-  group_by(Developer,Genre) %>% #We then group by Developer and Genre 
-  summarise(developer_glbl_total = sum(Global_Sales), developer_NA_total = sum(NA_Sales)) %>% #We summarise the NA and Global total for each category based on developer.
-  arrange(Developer) #We arrange the order in alphabetical order using the Developer column.
-head(df) #We preview the data set.
+#We store the developer_genre_sale data into df.
+ df <- developer_genre_sale %>% 
+#We then group by Developer and Genre.
+  group_by(Developer,Genre) %>%  
+#We summarise the NA and Global total for each category based on developer.
+  summarise(developer_glbl_total = sum(Global_Sales), developer_NA_total = sum(NA_Sales)) %>% 
+#We arrange the order in alphabetical order using the Developer column.
+  arrange(Developer)
+#We preview the data set.
+head(df) 
 ```
 
 ## 5. Analyzing
