@@ -81,16 +81,28 @@ dim(gamesales2010_2016) #We use the dim() function and see that the amount of ro
 
 ```
 
-3.2 We will now filter all rows where the Year_of_Release is unknown.\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+3.2 We will now filter all rows where the Year_of_Release is unknown.
 
 ```{r}
-gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A") #The filter() function removes all values that are "N/A" in the Year_of_Release column
-nrow(gamesales2010_2016) #nrow() prints out the number of rows in gamesales2010_2016.
+#The filter() function removes all values that are "N/A" in the Year_of_Release column
+gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A")
+#nrow() prints out the number of rows in gamesales2010_2016.
+nrow(gamesales2010_2016) 
 ```
 
 We have decided to remove all rows where the Year_of_Release is "N/A" because there are not too much "N/A" value's missing in the Year_of_Release column which would greatly impact our data set, because of this we are able to easily remove the "N/A" values from the data set without having to worry about our results being greatly influenced.
 
-3.3 We want to identify any outliers that are in our data set before we can continue any further. To accomplish this what we want to do is use a boxplot graph to identify any outliers in the graph. Because the numeric columns we will be focusing on are Global and NA Sales we will only look for outliers in these two columns.
+3.3 We want to find and remove any duplicated files so we use the duplicated() function.
+```{r}
+#We use the duplicated() to find all rows where they are repeated occurences then we use the ! to filter them out from the graph.
+gamesales2010_2016 <- gamesales2010_2016[!duplicated(gamesales2010_2016), ]
+#We use #nrow() function to see the amount of rows left in the data set.
+nrow(gamesales2010_2016)
+```
+After checking/removing all duplicated files in the data set we see view how many rows are in the data set. We notice that the number of rows did not decrease so there were no repeated values in the dataset.
+
+
+3.4 We want to identify any outliers that are in our data set before we can continue any further. To accomplish this what we want to do is use a boxplot graph to identify any outliers in the graph. Because the numeric columns we will be focusing on are Global and NA Sales we will only look for outliers in these two columns.
 
 ```{r}
 boxplot(gamesales2010_2016$Global_Sales, main = "Global Sales BoxPlot")
