@@ -162,7 +162,13 @@ We now develop questions to explore the data set even further.
 unique(gamesales2010_2016$Platform) 
 ```
 
-From looking at the unique attributes in the platform column we do not have any irregularities that might need to be rewritten and we can now continue to answer the first question.
+From looking at the unique attributes in the platform column we do have irregularities so we need to recode the names in Platform using the recode() function.
+```{r}
+
+gamesales2010_2016$Platform <- recode(gamesales2010_2016$Platform, "X360" = "Xbox", "PS3" = "Playstation",
+                                      "DS" = "Nintendo", "PS4" = "Playstation", "3DS" = "Nintendo", "Wii" = "Nintendo", "XOne" = "Xbox", "WiiU" = "Nintendo", "PSP" = "Playstation", "PSV" = "Playstation", "PS2" = "Playstation")
+```
+
 
 4.2 In order to answer the first question we must calculate the NA revenue for each platform.
 
