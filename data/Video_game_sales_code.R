@@ -1,3 +1,7 @@
+install.packages("tinytex")
+
+
+
 library(tidyverse)
 library(readr)
 Video_Games_Sales <- read_csv("data/Video_Games_Sales_as_at_22_Dec_2016.csv")
@@ -18,9 +22,10 @@ nrow(gamesales2010_2016)
 
 colnames(gamesales2010_2016)
 
+gamesalesNA <- filter(gamesales2010_2016, Year_of_Release == "N/A")
 gamesales2010_2016 <- filter(gamesales2010_2016, Year_of_Release != "N/A")
 nrow(gamesales2010_2016)
-
+view(gamesalesNA)
 #platform NA sales
 platform_NA_Sales <- gamesales2010_2016 %>%
   group_by(Platform) %>%
@@ -78,7 +83,7 @@ dev_gen <- gamesales2010_2016 %>%
 
 view(dev_genre_globalSale)
 
-colnames(gamesales2010_2016)
-view(dev)
+
+
 
 
