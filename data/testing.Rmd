@@ -1,6 +1,6 @@
 ---
 title: "Video Game Sales Investment Study"
-author: "Matthew Afoakwah, Nathan Cummings, Jaye Evans, Kevin Mainello, Chris Weiner, " 
+author: "Matthew Afoakwah, Nathan Cummings, Jaye Evans, Nikola Ignjatovic, Kevin Mainello, Chris Weiner" 
 output:
   pdf_document: default
   html_document: default
@@ -186,7 +186,7 @@ platform_NA_Sales <- gamesales2010_2016 %>%
   head(platform_NA_Sales) 
 ```
 What this code does is that it sums up the total NA sales made between 2010 to 2016 for each video game platform. 
-We create another table which calculates the NA and Global sales for each platform for everty different year as well.
+We create another table which calculates the NA and Global sales for each platform for every different year as well.
 ```{r}
 #We move the gamesales2010_2016 data into a new data set.
 platform_SalesbyYear <- gamesales2010_2016 %>% 
@@ -237,8 +237,23 @@ genre_na_sales <- gamesales2010_2016 %>%
 #We use the head() function to preview the table.
 head(genre_na_sales) 
 ```
+We now create another table that separates the NA sales by genre for each year.
+```{r}
+#We move the gamesales2010_2016 data into a new data set.
+genre_SalesbyYear <- gamesales2010_2016 %>%
+#We use the group_by() to group all the Genre and Year_of_Release together.
+  group_by(Genre, Year_of_Release) %>%
+#We use the summarize() to summarize the sum of NA_sales for each different Genre, and year.  
+  summarize(NA_total = sum(NA_Sales), glbl_total = sum(Global_Sales)) %>%
+#We arrange the data set by decreasing order according to the glbl_total.
+  arrange(desc(glbl_total))
+#We use the head() function to preview the new data set.
+head(genre_SalesbyYear)
+```
 
-4.5 We now want to calculate the Global revenue based on categories.
+
+
+4.5 We now want to calculate the Global revenue based on genre.
 
 ```{r}
 #We move the gamesales2010_2016 data into a new data set then pipe the command.
@@ -359,19 +374,36 @@ ggplot(platform_SalesbyYear, aes(x = Year_of_Release, y = NA_total, fill = Platf
 This code creates a bar graph that breaks up the total amount of NA sales for each of the different years of each different Platform.
 
 Analysis:
-Overall, from these graphs we can see that Xbox is the most profitable between all these platforms. However, compared to 2010 when it was at its highest, we are able to see that the sales for Xbox has been steadily declining same goes for they other platforms as well. But, compared to other platforms it is evident that the PlayStation and XOne has both increased in terms of sales since 2010.
+Overall, from these graphs we can see that Xbox is the most profitable between all these platforms. However, compared to 2010 when it was at its highest, we are able to see that the sales for Xbox has been steadily declining same goes for they other platforms as well. But, compared to other platforms PC has had the least amount of sales, and have seen that by 2016 PlayStation had they highest sells.  
 
 
 5.2 To determine the most profitable platform globally we must first analyze the total  sales made between 2010 and 2016 as well as analyzing the rate of change between these platforms.
 ```{r}
 #We use the ggplot2 package to create our graph, the aes() function is used to set the aesthetics of the plot. we set our x value to Platform, and our y value to glbl_total.
-ggplot(platform_glbl_sales , aes(x = Platform, y = glbl_total)) + geom_point(stat = "identity") + geom_segment(aes( x = Platform, xend = Platform, y = 0, yend = glbl_total )) + labs(title = "Global Sales by Platform", x = "Platform", y = "Global Sales\n(in millions)")
+ggplot(platform_glbl_sales , aes(x = Platform, y = glbl_total, color = Platform)) + geom_point(stat = "identity") + geom_segment(aes( x = Platform, xend = Platform, y = 0, yend = glbl_total )) + labs(title = "Global Sales by Platform", x = "Platform", y = "Global Sales\n(in millions)")
 #geom_point() sets a point at the value of each platforms global sales. 
 #geom_segment() creates lines at our platforms and reaches its total amount. We use labs() to rename the x and y axis as well as our title.
 ```
 This code generates a lollipop graph in which it displays the total global sales of each platform in 2010 to 2016.
 
-Now we are going to inspect the different the global sales difference from 2010 to 
+```{r}
+ggplot(data = platform_SalesbyYear, aes(x = 0, y = glbl_total, fill = Platform)) + geom_col(position = "fill") + facet_wrap(~Year_of_Release) + coord_polar(theta = "y") + theme_void() + labs(title = "Global Sales by Platform")
+```
+This code generates pie charts which shows the difference in sales between each platform from 2010 to 2016.
+
+```{r}
+#ggplot() is used to create the graph, and set the aesthetics of the graph.
+#geom_point() is used to create a scatter plot of each platforms sales from 2010 to 2016.
+ggplot(data = platform_SalesbyYear, aes(x = Year_of_Release, y = glbl_total, color = Platform)) +
+ geom_point() +
+ geom_line(aes(group = Platform)) + labs(title = "Global Video Game Sales (2010-2016)", x = "Year", y = "Global Sales\n(in millions)")
+#Geom_line is used to create a line graph and we set the aesthetic of the graph to group by Platform.
+#labs() is used to change the names of our x and y axis as well as the title.
+```
+This code generates a line graph that shows the rate of increase/decrease of each Platform from 2010 to 2016.
+
+Analysis:
+From our charts we can see that globally PlayStation has dominated with the most sales, and since 2010 the sales of PlayStation has had far more sales compared to other Platforms. We also see that the sales of PC has been low compared to other platforms and that the sales of Nintendo and Xbox has been steadily decreasing, with Nintendo decreasing the most in sales in the past 6 years.
 
 
 5.3 We now wan to create some visualizations for our third question to better understand the NA sales for each genre in 2010 to 2016.
@@ -382,6 +414,7 @@ ggplot(data = genre_na_sales, aes(x = reorder(Genre,genre_na_total), y = genre_n
 #labs() is used to changes the labels in various parts of the chart. Both the X and Y axis changing their names, as well as the title. theme() helps change non-data elements of a chart. In this case adding a change to Genre’s axis by utilizing element_text() to change the look of texts, adding an angle and using hjust to control horizontal justification)
 
 ```
+This code creates a bar graph that displays the overall sum of sales of each genre between 2010 to 2016.
 
 ```{r}
 #we convert our numeric values in genre_na_sales into a percentage of the entire sum and store it into pie_labels.
@@ -390,6 +423,22 @@ pie_labels <- paste0(round(100 *genre_na_sales$genre_na_total/sum(genre_na_sales
 ggplot(genre_na_sales, aes(x = "", y = genre_na_total, fill = Genre)) + geom_col(color = "black") + geom_text(aes(label = pie_labels), position = position_stack(vjust = 0.5)) + coord_polar(theta = "y") + labs( y = "NA Sales", title = "NA Sales by Genre")
 #geom_text is used along with aes() embedded to set labels to pie labels and position them accordingly. coord_polar is used because a pie chart is actually just a stacked bar chart in polar coordinates. Then, we use the labs function to change the name of the y axis and title on the graph.
 ```
+This code creates a pie graph, then displays the difference in NA sales each genre made out of 100% of the total sales made between 2010 to 2016
+
+```{r}
+#ggplot() is used to create the graph, and set the aesthetics of the graph.
+#geom_point() is used to create a scatter plot of each platforms sales from 2010 to 2016.
+ggplot(data = genre_SalesbyYear, aes(x = Year_of_Release, y = NA_total, color = Genre)) +
+ geom_point() +
+ geom_line(aes(group = Genre)) + labs(title = "NA Video Game Sales (2010-2016)", x = "Year", y = "NA Sales\n(in millions)")
+#Geom_line is used to create a line graph and we set the aesthetic of the graph to group by Genre.
+#labs() is used to change the names of our x and y axis as well as the title.
+```
+This code creates a line graph that displays the change of NA sales based on each genre over the past 6 years.
+
+Analysis:
+Overall, we assume that Action is the most profitable video game genre compared to the other games, however the sales of action has dramatically decreased since 2013. While Shooter games has also decreased it was the most profitable video game genre by 2016.
+
 
 5.4 We now see the total global revenue based on Genre to get a visual for which Genre was more profitable all throughout 2010-2016.
 
@@ -398,15 +447,19 @@ ggplot(genre_na_sales, aes(x = "", y = genre_na_total, fill = Genre)) + geom_col
 ggplot(data = genre_glbl_sales, aes(x = Genre, y = genre_glbl_total, fill = Genre)) + geom_bar(stat = "identity") + labs(title = "Global Sales by Genre", x = "Genre", y = "Global Sales\n(In millions)") + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 #labs() is used to changes the labels in various parts of the chart. Both the X and Y axis changing their names, as well as the title. theme() helps change non-data elements of a chart. In this case adding a change to Genre’s axis by utilizing element_text() to change the look of texts, adding an angle and using hjust to control horizontal justification
 ```
+This code generates a bar graph that displays the total Global sales of each video game genre between 2010 to 2016.
 
 ```{r}
 #We convert our numerical values into percentages, then store into pvgsg
 PVGSG <- genre_glbl_sales %>% mutate(percentage=paste0(round(genre_glbl_total/sum(genre_glbl_total)*100, 2), "%")) 
 PVGSG <- PVGSG %>% arrange(desc(genre_glbl_total))
 
-#This is simply a stacked bar chart with only a couple functions at play. we use ggplot() to create a bar chart, then use aes() to set the parameters for x and y axis, and use geom_bar() to create a bar chart and then set the style for to fill. 
+#We use ggplot() to create a bar chart, then use aes() to set the parameters for x and y axis, and use geom_bar() to create a bar chart and then set the style for to fill. 
 ggplot(PVGSG, aes(fill = Genre, y = genre_glbl_total, x = "")) + geom_bar(position = "fill", stat = "identity")
 ```
+This code displays a stacked bar graph with a couple of functions at play.
+
+
 
 ```{r}
 #we convert our numeric values in genre_glbl_sales into a percentage of the entire sum and store it into pie_labels2.
@@ -415,6 +468,19 @@ pie_labels2 <- paste0(round(100*genre_glbl_sales$genre_glbl_total/sum(genre_glbl
 ggplot(genre_glbl_sales, aes(x = "", y = genre_glbl_total, fill = Genre)) + geom_col(color = "black") + geom_text(aes(label = pie_labels2), position = position_stack(vjust = 0.5)) + coord_polar(theta = "y")
 #geom_text is used along with aes() embedded to set labels to pie labels and position them accordingly. coord_polar is used because a pie chart is actually just a stacked bar chart in polar coordinates. Then, we use the labs function to change the name of the y axis and title on the graph.
 ```
+
+```{r}
+#ggplot() is used to create the graph, and set the aesthetics of the graph.
+#geom_point() is used to create a scatter plot of each platforms sales from 2010 to 2016.
+ggplot(data = genre_SalesbyYear, aes(x = Year_of_Release, y = glbl_total, color = Genre)) +
+ geom_point() +
+ geom_line(aes(group = Genre)) + labs(title = "Global Video Game Sales (2010-2016)", x = "Year", y = "Global Sales\n(in millions)")
+#Geom_line is used to create a line graph and we set the aesthetic of the graph to group by Genre.
+#labs() is used to change the names of our x and y axis as well as the title.
+```
+
+Analysis:
+Just like our previous analysis with question 3, we see that similar to NA sales Action is also the most profitable genre, however over the course of 6 years the sales of Action games have decreased dramatically and eventually shooter has the most sales in 2016.
 
 5.5 We know the global and NA revenue for each of the top five developers, but now we want to create some visuals, to get a better understanding of their profit within 2010 to 2016.
 
