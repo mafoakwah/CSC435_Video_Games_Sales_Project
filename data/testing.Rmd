@@ -166,7 +166,7 @@ From looking at the unique attributes in the platform column we do have irregula
 ```{r}
 #We use recode() to change the values of certain attributes to new attributes such as Nintendo, PlayStation, and Xbox.
 gamesales2010_2016$Platform <- recode(gamesales2010_2016$Platform, "X360" = "Xbox", "PS3" = "PlayStation", "DS" = "Nintendo", "PS4" = "PlayStation", "3DS" = "Nintendo", "Wii" = "Nintendo", "XOne" = "Xbox", "WiiU" = "Nintendo", "PSP" = "PlayStation", "PSV" = "PlayStation", "PS2" = "PlayStation")
-#We use uinque()to list the unique attributes in the platform column.
+#We use unique()to list the unique attributes in the platform column.
 unique(gamesales2010_2016$Platform)
 ```
 Now we have finished changing the attributes in the Platform column and can now move on to our next task.
@@ -417,9 +417,9 @@ ggplot(data = genre_na_sales, aes(x = reorder(Genre,genre_na_total), y = genre_n
 This code creates a bar graph that displays the overall sum of sales of each genre between 2010 to 2016.
 
 ```{r}
-#we convert our numeric values in genre_na_sales into a percentage of the entire sum and store it into pie_labels.
+#We convert our numeric values in genre_na_sales into a percentage of the entire sum and store it into pie_labels.
 pie_labels <- paste0(round(100 *genre_na_sales$genre_na_total/sum(genre_na_sales$genre_na_total), 2), "%")
-#we use ggplot() to create the graph, the aes() function set’s the aesthetic. Used nothing for X, but for Y we used NA Sales so that it would fill proportionately.We use the reorder() function to reorder the different Genre's from least to greatest. We then filled it by Genre using a rainbow palette. the geom_col() function is used to create black lines in between our “Slices”.
+#We use ggplot() to create the graph, the aes() function set’s the aesthetic. Used nothing for X, but for Y we used NA Sales so that it would fill proportionately.We use the reorder() function to reorder the different Genre's from least to greatest. We then filled it by Genre using a rainbow palette. the geom_col() function is used to create black lines in between our “Slices”.
 ggplot(genre_na_sales, aes(x = "", y = genre_na_total, fill = Genre)) + geom_col(color = "black") + geom_text(aes(label = pie_labels), position = position_stack(vjust = 0.5)) + coord_polar(theta = "y") + labs( y = "NA Sales", title = "NA Sales by Genre")
 #geom_text is used along with aes() embedded to set labels to pie labels and position them accordingly. coord_polar is used because a pie chart is actually just a stacked bar chart in polar coordinates. Then, we use the labs function to change the name of the y axis and title on the graph.
 ```
@@ -450,7 +450,7 @@ ggplot(data = genre_glbl_sales, aes(x = Genre, y = genre_glbl_total, fill = Genr
 This code generates a bar graph that displays the total Global sales of each video game genre between 2010 to 2016.
 
 ```{r}
-#We convert our numerical values into percentages, then store into pvgsg
+#We convert our numerical values into percentages, then store into pvgsg.
 PVGSG <- genre_glbl_sales %>% mutate(percentage=paste0(round(genre_glbl_total/sum(genre_glbl_total)*100, 2), "%")) 
 PVGSG <- PVGSG %>% arrange(desc(genre_glbl_total))
 
@@ -462,12 +462,13 @@ This code displays a stacked bar graph with a couple of functions at play.
 
 
 ```{r}
-#we convert our numeric values in genre_glbl_sales into a percentage of the entire sum and store it into pie_labels2.
+#We convert our numeric values in genre_glbl_sales into a percentage of the entire sum and store it into pie_labels2.
 pie_labels2 <- paste0(round(100*genre_glbl_sales$genre_glbl_total/sum(genre_glbl_sales$genre_glbl_total), 2), "%")
-#we use ggplot() to create the graph, the aes() function set’s the aesthetic. Used nothing for X, but for Y we used genre_glbl_total so that it would fill proportionately.We use the reorder() function to reorder the different Genre's from least to greatest. We then filled it by Genre using a rainbow palette. the geom_col() function is used to create black lines in between our “Slices”.
+#We use ggplot() to create the graph, the aes() function set’s the aesthetic. Used nothing for X, but for Y we used genre_glbl_total so that it would fill proportionately.We use the reorder() function to reorder the different Genre's from least to greatest. We then filled it by Genre using a rainbow palette. the geom_col() function is used to create black lines in between our “Slices”.
 ggplot(genre_glbl_sales, aes(x = "", y = genre_glbl_total, fill = Genre)) + geom_col(color = "black") + geom_text(aes(label = pie_labels2), position = position_stack(vjust = 0.5)) + coord_polar(theta = "y")
 #geom_text is used along with aes() embedded to set labels to pie labels and position them accordingly. coord_polar is used because a pie chart is actually just a stacked bar chart in polar coordinates. Then, we use the labs function to change the name of the y axis and title on the graph.
 ```
+This code creates a pie chart in which it displays the sum of global sale of video games between 2010 to 2016 in a percentage of the total sales made by genre.
 
 ```{r}
 #ggplot() is used to create the graph, and set the aesthetics of the graph.
@@ -478,6 +479,7 @@ ggplot(data = genre_SalesbyYear, aes(x = Year_of_Release, y = glbl_total, color 
 #Geom_line is used to create a line graph and we set the aesthetic of the graph to group by Genre.
 #labs() is used to change the names of our x and y axis as well as the title.
 ```
+This line creates a line chart that shows the decrease/increase of gloabl video game sales each year.
 
 Analysis:
 Just like our previous analysis with question 3, we see that similar to NA sales Action is also the most profitable genre, however over the course of 6 years the sales of Action games have decreased dramatically and eventually shooter has the most sales in 2016.
