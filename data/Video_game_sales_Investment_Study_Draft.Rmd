@@ -1,5 +1,5 @@
 ---
-title: "Notes"
+title: "Video game sales"
 output: html_document
 date: "2023-03-18"
 
@@ -13,25 +13,25 @@ Suppose their is an investor who wants to invest in a gaming platform. However b
   The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that this dataset was      scraped from VGChartz and Metacritic.
 
 2.1 Load Tidyverse package
+Before we work on our data we first want to load it into R, but first we must add two R packages into R before we attempt to work with data.
 
-```#install.packages("Tidyverse")
-  library(tidyverse)
-```
-
-```{r}
-library(readr) 
+```{r} #install.packages("Tidyverse")
+  library(tidyverse) #Used to load tidyverse package into R.
+  
+  library(readr) #Used to load readr package in R to use to read CSV file.
 ```
 
 
 2.2 Import dataset  
-
+Now we want to use import our dataset into R using the read_CSV function that is from our readr package.
 ```{r}
-Video_Games_Sales <- read_csv("data/Video_Games_Sales_as_at_22_Dec_2016.csv")
+Video_Games_Sales <- read_csv("C:/Users/Matthew Afoakwah/OneDrive/Documents/Bport/Bport Spring 2023 (Final Semester!)/CSC435 Data Analytics/Project/CSC435_Video_Games_Sales_Project/data/Video_Games_Sales_as_at_22_Dec_2016.csv") #Reads the CSV file from the file location and imports the file into R, named Video_Games_Sales
 ```
 
 2.3 Preview dataset
+Before we can work on our dataset, we must first see if the dataset is relivant to our task. In order to accomplish this we must view the dataset in R.
 ```{r}
-View(Video_Games_Sales)
+View(Video_Games_Sales) #view() function shows the entire dataset.
 ```
 
 ```{r}
@@ -39,9 +39,7 @@ head(Video_Games_Sales)
 ```
 
 
-```{r}
-glimpse(Video_Games_Sales)
-```
+
 ```{r}
 str(Video_Games_Sales)
 ```
@@ -147,6 +145,8 @@ dev_genre_global <- gamesales2010_2016 %>%
   arrange(-devcat_total)
 view(dev_genre_global)
 ```
+
+
 
 
 
