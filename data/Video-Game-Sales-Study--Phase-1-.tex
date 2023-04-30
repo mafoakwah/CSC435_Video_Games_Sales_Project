@@ -1,0 +1,1544 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Video Game Sales Investment Study},
+  pdfauthor={Matthew Afoakwah, Nathan Cummings, Jaye Evans, Nikola Ignjatovic, Kevin Mainello, Chris Weiner},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Video Game Sales Investment Study}
+\author{Matthew Afoakwah, Nathan Cummings, Jaye Evans, Nikola
+Ignjatovic, Kevin Mainello, Chris Weiner}
+\date{March 28th, 2023}
+
+\begin{document}
+\maketitle
+
+\hypertarget{scenerio}{%
+\subsection{1. Scenerio}\label{scenerio}}
+
+Suppose their is an investor who wants to invest in a gaming platform.
+However before the investor invests, they want to know which gaming
+platform between the years 2010 to 2016 has the best NA, EU, and Global
+sales. The investor also wants to know what video game category produces
+the most income between 2010 and 2016 while for each video game platform
+so that they can better invest their money to better profit themselves
+in the future. The investor also wants to see what developers create
+more profitable games and the video game categories those developers
+mainly develop. The investor wants an in-depth analyst on the video game
+platforms, video game categories, and developers before they invest
+their money.
+
+\hypertarget{preparation}{%
+\subsection{2.Preparation}\label{preparation}}
+
+The data we are using was uploaded to Kaggle by SID\_TWR. SID\_TWR
+stated that this dataset was scraped from VGChartz and Metacritic.
+
+2.1 Load Tidyverse package Before we work on our data we first want to
+load it into R, but first we must add two R packages into R before we
+attempt to work with data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install.packages(\textquotesingle{}Tidyverse\textquotesingle{})}
+\FunctionTok{library}\NormalTok{(tidyverse)  }\CommentTok{\#Used to load tidyverse package into R.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyverse' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tibble' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'forcats' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'lubridate' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.1     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.2     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)  }\CommentTok{\#Used to load readr package in R to use to read CSV file.}
+\end{Highlighting}
+\end{Shaded}
+
+2.2 Import dataset\\
+Now we want to use import our dataset into R using the read\_CSV
+function that is from our readr package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reads the CSV file from the file location using read\_csv, and imports the}
+\CommentTok{\# file into R, named Video\_Games\_Sales}
+\NormalTok{Video\_Games\_Sales }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data/Video\_Games\_Sales\_as\_at\_22\_Dec\_2016.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 16719 Columns: 16
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (7): Name, Platform, Year_of_Release, Genre, Publisher, Developer, Rating
+## dbl (9): NA_Sales, EU_Sales, JP_Sales, Other_Sales, Global_Sales, Critic_Sco...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+2.3 Preview dataset Before we can work on our dataset, we must first see
+if the dataset is relivant to our task. In order to accomplish this we
+must explore the dataset in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# we use the head() function to get a preview of the dataset.}
+\FunctionTok{head}\NormalTok{(Video\_Games\_Sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 16
+##   Name     Platf~1 Year_~2 Genre Publi~3 NA_Sa~4 EU_Sa~5 JP_Sa~6 Other~7 Globa~8
+##   <chr>    <chr>   <chr>   <chr> <chr>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+## 1 Wii Spo~ Wii     2006    Spor~ Ninten~    41.4   29.0     3.77    8.45    82.5
+## 2 Super M~ NES     1985    Plat~ Ninten~    29.1    3.58    6.81    0.77    40.2
+## 3 Mario K~ Wii     2008    Raci~ Ninten~    15.7   12.8     3.79    3.29    35.5
+## 4 Wii Spo~ Wii     2009    Spor~ Ninten~    15.6   10.9     3.28    2.95    32.8
+## 5 Pokemon~ GB      1996    Role~ Ninten~    11.3    8.89   10.2     1       31.4
+## 6 Tetris   GB      1989    Puzz~ Ninten~    23.2    2.26    4.22    0.58    30.3
+## # ... with 6 more variables: Critic_Score <dbl>, Critic_Count <dbl>,
+## #   User_Score <dbl>, User_Count <dbl>, Developer <chr>, Rating <chr>, and
+## #   abbreviated variable names 1: Platform, 2: Year_of_Release, 3: Publisher,
+## #   4: NA_Sales, 5: EU_Sales, 6: JP_Sales, 7: Other_Sales, 8: Global_Sales
+\end{verbatim}
+
+We have now seen some of the data set but before we can verify that the
+data set is relevant we must explore the data set further. To accomplish
+this we use the glimpse() function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# shows a glimpse of the data set along with the attributes.}
+\FunctionTok{glimpse}\NormalTok{(Video\_Games\_Sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 16,719
+## Columns: 16
+## $ Name            <chr> "Wii Sports", "Super Mario Bros.", "Mario Kart Wii", "~
+## $ Platform        <chr> "Wii", "NES", "Wii", "Wii", "GB", "GB", "DS", "Wii", "~
+## $ Year_of_Release <chr> "2006", "1985", "2008", "2009", "1996", "1989", "2006"~
+## $ Genre           <chr> "Sports", "Platform", "Racing", "Sports", "Role-Playin~
+## $ Publisher       <chr> "Nintendo", "Nintendo", "Nintendo", "Nintendo", "Ninte~
+## $ NA_Sales        <dbl> 41.36, 29.08, 15.68, 15.61, 11.27, 23.20, 11.28, 13.96~
+## $ EU_Sales        <dbl> 28.96, 3.58, 12.76, 10.93, 8.89, 2.26, 9.14, 9.18, 6.9~
+## $ JP_Sales        <dbl> 3.77, 6.81, 3.79, 3.28, 10.22, 4.22, 6.50, 2.93, 4.70,~
+## $ Other_Sales     <dbl> 8.45, 0.77, 3.29, 2.95, 1.00, 0.58, 2.88, 2.84, 2.24, ~
+## $ Global_Sales    <dbl> 82.53, 40.24, 35.52, 32.77, 31.37, 30.26, 29.80, 28.92~
+## $ Critic_Score    <dbl> 76, NA, 82, 80, NA, NA, 89, 58, 87, NA, NA, 91, NA, 80~
+## $ Critic_Count    <dbl> 51, NA, 73, 73, NA, NA, 65, 41, 80, NA, NA, 64, NA, 63~
+## $ User_Score      <dbl> 8.0, NA, 8.3, 8.0, NA, NA, 8.5, 6.6, 8.4, NA, NA, 8.6,~
+## $ User_Count      <dbl> 322, NA, 709, 192, NA, NA, 431, 129, 594, NA, NA, 464,~
+## $ Developer       <chr> "Nintendo", NA, "Nintendo", "Nintendo", NA, NA, "Ninte~
+## $ Rating          <chr> "E", NA, "E", "E", NA, NA, "E", "E", "E", NA, NA, "E",~
+\end{verbatim}
+
+Now we want to look at all the columns within the data set. We
+accomplish this using the colnames() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Shows the name of the columns in the Video\_Games\_Sales data set.}
+\FunctionTok{colnames}\NormalTok{(Video\_Games\_Sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Name"            "Platform"        "Year_of_Release" "Genre"          
+##  [5] "Publisher"       "NA_Sales"        "EU_Sales"        "JP_Sales"       
+##  [9] "Other_Sales"     "Global_Sales"    "Critic_Score"    "Critic_Count"   
+## [13] "User_Score"      "User_Count"      "Developer"       "Rating"
+\end{verbatim}
+
+Now we want to determine the size of the data set so we use the dim()
+function to determine the data sets size
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# After using the dim() function we see that the length of the data set is 16}
+\CommentTok{\# and that there is 16719 rows.}
+\FunctionTok{dim}\NormalTok{(Video\_Games\_Sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16719    16
+\end{verbatim}
+
+To continue our exploration we wish to see the data type of each column,
+in order to accomplish this we use the class function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the sapply() function to apply the class function on each attribute of}
+\CommentTok{\# our data set.}
+\FunctionTok{sapply}\NormalTok{(Video\_Games\_Sales, class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Name        Platform Year_of_Release           Genre       Publisher 
+##     "character"     "character"     "character"     "character"     "character" 
+##        NA_Sales        EU_Sales        JP_Sales     Other_Sales    Global_Sales 
+##       "numeric"       "numeric"       "numeric"       "numeric"       "numeric" 
+##    Critic_Score    Critic_Count      User_Score      User_Count       Developer 
+##       "numeric"       "numeric"       "numeric"       "numeric"     "character" 
+##          Rating 
+##     "character"
+\end{verbatim}
+
+From viewing our data set we see that our data set is relevant to our
+task and has given us insight to our data set which will allow us to
+move on to the next step.
+
+\hypertarget{data-cleaning}{%
+\subsection{3. Data Cleaning}\label{data-cleaning}}
+
+Though we can see that our data set has information that can be used for
+our problem there is also irrelevant data in the data set, in order to
+focus on the information that we need we will need to clean the data set
+using transformations.
+
+3.1 Since we are focusing on the video game sales between 2010 to 2016
+we will shrink the data set by filtering it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# use the filter() function to remove all rows where the release year is not}
+\CommentTok{\# between 2010 and 2016. Then we store it in a new data set called}
+\CommentTok{\# gamesales2010\_2016}
+\NormalTok{gamesales2010\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(Video\_Games\_Sales, Year\_of\_Release }\SpecialCharTok{\textgreater{}=} \DecValTok{2010}\NormalTok{)}
+\NormalTok{gamesales2010\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(gamesales2010\_2016, Year\_of\_Release }\SpecialCharTok{\textless{}=} \DecValTok{2016}\NormalTok{)}
+\CommentTok{\# We use the dim() function and see that the amount of rows in the data set.}
+\FunctionTok{dim}\NormalTok{(gamesales2010\_2016)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5277   16
+\end{verbatim}
+
+3.2 We will now filter all rows where the Year\_of\_Release is unknown.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The filter() function removes all values that are \textquotesingle{}N/A\textquotesingle{} in the}
+\CommentTok{\# Year\_of\_Release column}
+\NormalTok{gamesales2010\_2016 }\OtherTok{\textless{}{-}} \FunctionTok{filter}\NormalTok{(gamesales2010\_2016, Year\_of\_Release }\SpecialCharTok{!=} \StringTok{"N/A"}\NormalTok{)}
+\CommentTok{\# nrow() prints out the number of rows in gamesales2010\_2016.}
+\FunctionTok{nrow}\NormalTok{(gamesales2010\_2016)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5277
+\end{verbatim}
+
+We have decided to remove all rows where the Year\_of\_Release is
+``N/A'' because there are not too much ``N/A'' value's missing in the
+Year\_of\_Release column which would greatly impact our data set,
+because of this we are able to easily remove the ``N/A'' values from the
+data set without having to worry about our results being greatly
+influenced.
+
+3.3 We want to find and remove any duplicated files so we use the
+duplicated() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the duplicated() to find all rows where they are repeated occurences.}
+\CommentTok{\# \#Then we use the ! to filter them out from the graph.}
+\NormalTok{gamesales2010\_2016 }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016[}\SpecialCharTok{!}\FunctionTok{duplicated}\NormalTok{(gamesales2010\_2016), ]}
+\CommentTok{\# We use \#nrow() function to see the amount of rows left in the data set.}
+\FunctionTok{nrow}\NormalTok{(gamesales2010\_2016)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5277
+\end{verbatim}
+
+After checking/removing all duplicated files in the data set we see view
+how many rows are in the data set. We notice that the number of rows did
+not decrease so there were no repeated values in the dataset.
+
+3.4 We want to identify any outliers that are in our data set before we
+can continue any further. To accomplish this what we want to do is use a
+boxplot graph to identify any outliers in the graph. Because the numeric
+columns we will be focusing on are Global and NA Sales we will only look
+for outliers in these two columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We create a boxplot for the Global Sales in gamesales\_2010\_2016 then set the}
+\CommentTok{\# title to \textquotesingle{}Global Sales BoxPlot\textquotesingle{}.}
+\FunctionTok{boxplot}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Global\_Sales, }\AttributeTok{main =} \StringTok{"Global Sales BoxPlot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We create a new variable outliers, then use boxplot.stats() to assign our}
+\CommentTok{\# outliers from Global sales to outliers.}
+\NormalTok{outliers }\OtherTok{\textless{}{-}} \FunctionTok{boxplot.stats}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Global\_Sales)}\SpecialCharTok{$}\NormalTok{out}
+\end{Highlighting}
+\end{Shaded}
+
+This boxplot creates a visual representation of the max, min, and median
+values in the Global sales of our data set.
+
+We can see that there are some outliers in the Global Sales, this allows
+us to easily remove them from our data set. However we will not remove
+them as they will also not affect our progress moving forward. Now, we
+will check the outliers for the NA Sales.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We create a boxplot for the NA Sales in gamesales\_2010\_2016 then set the}
+\CommentTok{\# title to \textquotesingle{}NA Sales BoxPlot\textquotesingle{}.}
+\FunctionTok{boxplot}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{NA\_Sales, }\AttributeTok{main =} \StringTok{"NA Sales BoxPlot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We create a new variable outliersNA, then use boxplot.stats() to assign our}
+\CommentTok{\# outliers from NA sales to outliersNA.}
+\NormalTok{outliersNA }\OtherTok{\textless{}{-}} \FunctionTok{boxplot.stats}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{NA\_Sales)}\SpecialCharTok{$}\NormalTok{out}
+\end{Highlighting}
+\end{Shaded}
+
+This boxplot creates a visual representation of the max, min, and median
+values in the NA sales of our data set.
+
+In this data set outliers are usually the top selling games or the ones
+that sell very little. This is why we did not remove any outliers, as it
+is valuable data and is relevant to what we will be searching for in the
+data set.
+
+\hypertarget{data-exploration}{%
+\subsection{4. Data Exploration}\label{data-exploration}}
+
+We now develop questions to explore the data set even further.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Which video game platform made the most NA Sales from 2010 to 2016?
+\item
+  Which video game platform made the most Global Sales from 2010 to
+  2016?
+\item
+  Which video game category had the highest NA sales?
+\item
+  Which video game category made the highest Global sales?
+\item
+  Which top five video game developers have the highest Global video
+  game sales?
+\item
+  Which video game genre is the top five developers most profitable in?
+\end{enumerate}
+
+4.1 Before we can go and answer the questions we first want to explore
+the unique attributes in the platform column to see if there are any
+discrepancies that need to be fixed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# unique function lists the unique characters in the platform column.}
+\FunctionTok{unique}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Platform)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "X360" "PS3"  "DS"   "PS4"  "3DS"  "Wii"  "XOne" "WiiU" "PC"   "PSP" 
+## [11] "PSV"  "PS2"
+\end{verbatim}
+
+From looking at the unique attributes in the platform column we do have
+irregularities so we need to recode the names in Platform using the
+recode() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use recode() to change the values of certain attributes to new attributes}
+\CommentTok{\# such as Nintendo, PlayStation, and Xbox.}
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Platform }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Platform, }\AttributeTok{X360 =} \StringTok{"Xbox"}\NormalTok{,}
+    \AttributeTok{PS3 =} \StringTok{"PlayStation"}\NormalTok{, }\AttributeTok{DS =} \StringTok{"Nintendo"}\NormalTok{, }\AttributeTok{PS4 =} \StringTok{"PlayStation"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{3DS}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{,}
+    \AttributeTok{Wii =} \StringTok{"Nintendo"}\NormalTok{, }\AttributeTok{XOne =} \StringTok{"Xbox"}\NormalTok{, }\AttributeTok{WiiU =} \StringTok{"Nintendo"}\NormalTok{, }\AttributeTok{PSP =} \StringTok{"PlayStation"}\NormalTok{, }\AttributeTok{PSV =} \StringTok{"PlayStation"}\NormalTok{,}
+    \AttributeTok{PS2 =} \StringTok{"PlayStation"}\NormalTok{)}
+\CommentTok{\# We use unique()to list the unique attributes in the platform column.}
+\FunctionTok{unique}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Platform)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Xbox"        "PlayStation" "Nintendo"    "PC"
+\end{verbatim}
+
+Now we have finished changing the attributes in the Platform column and
+can now move on to our next task.
+
+4.2 In order to answer the first question we must calculate the NA
+revenue for each platform.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set.}
+\NormalTok{platform\_NA\_Sales }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the group\_by() to group all the platforms in the platform\_NA\_Sales}
+    \CommentTok{\# together.}
+\FunctionTok{group\_by}\NormalTok{(Platform) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the summarize() to summarize the sum of NA\_sales for each}
+    \CommentTok{\# different platform.}
+\FunctionTok{summarize}\NormalTok{(}\AttributeTok{NA\_total =} \FunctionTok{sum}\NormalTok{(NA\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the NA\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(NA\_total))}
+\CommentTok{\# We use the head() function to preview the new data set.}
+\FunctionTok{head}\NormalTok{(platform\_NA\_Sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Platform    NA_total
+##   <chr>          <dbl>
+## 1 Xbox           427. 
+## 2 PlayStation    362. 
+## 3 Nintendo       302. 
+## 4 PC              39.1
+\end{verbatim}
+
+What this code does is that it sums up the total NA sales made between
+2010 to 2016 for each video game platform. We create another table which
+calculates the NA and Global sales for each platform for every different
+year as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set.}
+\NormalTok{platform\_SalesbyYear }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the group\_by() to group all the Platform and Year\_of\_Release}
+    \CommentTok{\# together.}
+\FunctionTok{group\_by}\NormalTok{(Platform, Year\_of\_Release) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the summarize() to summarize the sum of NA\_sales for each}
+    \CommentTok{\# different platform, and year.}
+\FunctionTok{summarize}\NormalTok{(}\AttributeTok{NA\_total =} \FunctionTok{sum}\NormalTok{(NA\_Sales), }\AttributeTok{glbl\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the glbl\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(glbl\_total))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Platform'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the head() function to preview the new data set.}
+\FunctionTok{head}\NormalTok{(platform\_SalesbyYear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+## # Groups:   Platform [3]
+##   Platform    Year_of_Release NA_total glbl_total
+##   <chr>       <chr>              <dbl>      <dbl>
+## 1 Nintendo    2010               113.        213.
+## 2 PlayStation 2010                70.6       183.
+## 3 PlayStation 2011                68.6       180.
+## 4 Xbox        2010               107.        170.
+## 5 PlayStation 2014                53.1       160.
+## 6 PlayStation 2013                54.1       153.
+\end{verbatim}
+
+What this code does is that it calculates the total NA and Global sales
+of each platform based on the year. This will allow us to find a trend
+in the profit of each platform.
+
+4.3 Secondly, we calculate the global revenue for each platform.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set then pipe the}
+\CommentTok{\# command.}
+\NormalTok{platform\_glbl\_sales }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the group\_by() to group all the platforms together.}
+\FunctionTok{group\_by}\NormalTok{(Platform) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the summarize function to summarize the sum of Global\_sales for}
+    \CommentTok{\# each different platform.}
+\FunctionTok{summarize}\NormalTok{(}\AttributeTok{glbl\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the glbl\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(glbl\_total))}
+\CommentTok{\# We use the head() function to preview the table.}
+\FunctionTok{head}\NormalTok{(platform\_glbl\_sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Platform    glbl_total
+##   <chr>            <dbl>
+## 1 PlayStation      1026.
+## 2 Xbox              710.
+## 3 Nintendo          687.
+## 4 PC                122.
+\end{verbatim}
+
+4.4 Now, we want to calculate the NA revenue based on genre.but before
+we can do that we must see if there are any dependencies with the
+character values in genre.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the unique to search for any irregular values in the categories}
+\CommentTok{\# column.}
+\FunctionTok{unique}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Genre)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Misc"         "Action"       "Role-Playing" "Shooter"      "Racing"      
+##  [6] "Platform"     "Simulation"   "Sports"       "Fighting"     "Strategy"    
+## [11] "Adventure"    "Puzzle"
+\end{verbatim}
+
+After using the unique() function we see that there are not really any
+irregularities in the function which allows us to continue to calculate
+the NA revenue based on genre.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set.}
+\NormalTok{genre\_na\_sales }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the group\_by() to group all the Genres together.}
+\FunctionTok{group\_by}\NormalTok{(Genre) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use summarize() to summarize the sum of na\_sales for each different}
+    \CommentTok{\# genre.}
+\FunctionTok{summarise}\NormalTok{(}\AttributeTok{genre\_na\_total =} \FunctionTok{sum}\NormalTok{(NA\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the}
+    \CommentTok{\# genre\_na\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(genre\_na\_total))}
+\CommentTok{\# We use the head() function to preview the table.}
+\FunctionTok{head}\NormalTok{(genre\_na\_sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   Genre        genre_na_total
+##   <chr>                 <dbl>
+## 1 Action                291. 
+## 2 Shooter               237. 
+## 3 Sports                157. 
+## 4 Misc                  124. 
+## 5 Role-Playing          112. 
+## 6 Platform               54.9
+\end{verbatim}
+
+We now create another table that separates the NA sales by genre for
+each year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set.}
+\NormalTok{genre\_SalesbyYear }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the group\_by() to group all the Genre and Year\_of\_Release}
+    \CommentTok{\# together.}
+\FunctionTok{group\_by}\NormalTok{(Genre, Year\_of\_Release) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the summarize() to summarize the sum of NA\_sales for each}
+    \CommentTok{\# different Genre, and year.}
+\FunctionTok{summarize}\NormalTok{(}\AttributeTok{NA\_total =} \FunctionTok{sum}\NormalTok{(NA\_Sales), }\AttributeTok{glbl\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the glbl\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(glbl\_total))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Genre'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the head() function to preview the new data set.}
+\FunctionTok{head}\NormalTok{(genre\_SalesbyYear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+## # Groups:   Genre [2]
+##   Genre   Year_of_Release NA_total glbl_total
+##   <chr>   <chr>              <dbl>      <dbl>
+## 1 Action  2013                53.5      123. 
+## 2 Action  2012                51.8      119. 
+## 3 Action  2011                53.1      117. 
+## 4 Action  2010                59.7      115. 
+## 5 Shooter 2011                49.7       98.2
+## 6 Action  2014                38.8       97.3
+\end{verbatim}
+
+4.5 We now want to calculate the Global revenue based on genre.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We move the gamesales2010\_2016 data into a new data set then pipe the}
+\CommentTok{\# command.}
+\NormalTok{genre\_glbl\_sales }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use group\_by() to group all the Genres in the genre\_glbl\_sales}
+    \CommentTok{\# together.}
+\FunctionTok{group\_by}\NormalTok{(Genre) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use summarize() to summarize the sum of Global\_sales for each}
+    \CommentTok{\# different genre.}
+\FunctionTok{summarise}\NormalTok{(}\AttributeTok{genre\_glbl\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the data set by decreasing order according to the}
+    \CommentTok{\# genre\_na\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(genre\_glbl\_total))}
+\CommentTok{\# We use the head() function to preview the table.}
+\FunctionTok{head}\NormalTok{(genre\_glbl\_sales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   Genre        genre_glbl_total
+##   <chr>                   <dbl>
+## 1 Action                   673.
+## 2 Shooter                  480.
+## 3 Sports                   329.
+## 4 Role-Playing             315.
+## 5 Misc                     235.
+## 6 Racing                   123.
+\end{verbatim}
+
+4.6 Before we can attempt to calculate NA and Global sales based on
+developer we must first determine whether there are any irregularities
+in the Developer column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use unique() to take all unique values in the developer column then sort}
+\CommentTok{\# them.}
+\NormalTok{unique\_dev }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer))}
+\end{Highlighting}
+\end{Shaded}
+
+After placing all the unique values from the Developer column of the
+data set gamesales2010\_2016 in a new set, we see that there are over
+800 different values and there's bound to be some missed spelled values
+so we review all the unique values and change their names to match what
+we want it to be. There are some values who may have be in a different
+region but are part of a company but because we want the overall of a
+company we change the different region companies to match its parent
+company as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the recode() function from the dplyr package from our tidyverse}
+\CommentTok{\# package in order change our variables.}
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{1C: Maddox Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"1C Company"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{1C:Ino{-}Co}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"1C Company"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{2K Australia}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"2K Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{2K Czech}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"2K Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{2K Sports}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"2K Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{2K Marin}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"2K Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{2K Play}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"2K Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{505 Games, Sarbakan Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"505 Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Activision, Behaviour Interactive}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Activision"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Activision, FreeStyleGames}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Activision"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ambrella, The Pokemon Company}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ambrella"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Armature Studio, comcept}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Armature Studio"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Artificial Mind and Movement, EA Redwood Shores}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Artificial Mind and Movement"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Atari, Atari SA}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Atari"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Atari, Slightly Mad Studios, Atari SA}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Atari"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Atlus, Dingo Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Atlus"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Atomic Planet Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Atomic Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Avalanche Software}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Avalanche Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Bandai Namco Games, Artdink}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Bandai Namco Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Beenox, Other Ocean Interactive}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Beenox"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Big Blue Bubble Inc., Scholastic, Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Big Blue Bubble Inc."}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Big Blue Bubble Inc., Scholastic, Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Big Blue Bubble Inc."}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Blitz Games Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Blitz Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Blue Byte, Related Designs}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Blue Byte"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Bungie Software, Bungie}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Bungie"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Capcom Vancouver}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Capcom"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Capcom, Pipeworks Software, Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Capcom"}\NormalTok{)}
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{Capcom, QLOC}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Capcom"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Climax Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Climax Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Climax Group}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Climax Studios"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Climax Group, Climax Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Climax Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Codemasters Birmingham}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Codemasters"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Compile Heart, GCREST}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Compile Heart"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Crave, DTP Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Crave"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Crystal Dynamics, Nixxes Software}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Crystal Dynamics"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Cyanide, Cyanide Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Cyanide"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{CyberConnect2, Racjin}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"CyberConnect2"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{CyberPlanet Interactive Public Co., Ltd., Maximum Family Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"CyberPlanet Interactive Public Co., Ltd."}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Deep Silver Dambuster Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Deep Silver"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Deep Silver, Keen Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Deep Silver"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Dimps Corporation, Dream Execution}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Dimps Corporation"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Dimps Corporation, SCE Japan Studio}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Dimps Corporation"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Disney Interactive Studios, Land Ho!}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Disney Interactive Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Black Box}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{EA Bright Light}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Canada}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Canada, EA Vancouver}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{EA DICE}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA DICE, Danger Close}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{)}
+\CommentTok{\#\textquotesingle{}EA Sports\textquotesingle{} = \textquotesingle{}EA Games\textquotesingle{}}
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{EA Sports}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{EA Montreal}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Redwood Shores}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Sports, EA Canada}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{EA Sports, EA Vancouver}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{EA Tiburon}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"EA Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Eidos Montreal, Nixxes Software}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Eidos Montreal"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Engine Software, Re{-}Logic}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Engine Software"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Epic Games, People Can Fly}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Epic Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Farsight Studios, Crave}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Farsight Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Gaijin Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Gaijin Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Gearbox Software, 3D Realms}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Gearbox Software"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Gearbox Software, WayForward}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Gearbox Software"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Guerilla Cambridge}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Guerrilla Cambridge"}\NormalTok{, }\AttributeTok{Guerilla =} \StringTok{"Guerilla Cambridge"}\NormalTok{)}
+
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{Harmonix Music Systems, Demiurge}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Harmonix Music Systems"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Headup Games, Crenetic Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Headup Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Konami Computer Entertainment Hawaii}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Konami"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Marvelous AQL}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Marvelous Inc."}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Marvelous Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Marvelous Inc."}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Midway Studios {-} Austin}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Midway"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Monolith Soft}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Monolith Productions"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Monolith Soft, Banpresto}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Monolith Productions"}\NormalTok{)}
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{Namco Bandai Games America, Namco Bandai Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Namco Bandai Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Namco Bandai Games, Bandai Namco Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Namco Bandai Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Namco Bandai Games, Cellius}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Namco Bandai Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Namco Bandai Games, Monkey Bar Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Namco Bandai Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{NATSUME ATARI Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Natsume"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Nintendo EAD Tokyo}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Camelot Software Planning}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Headstrong Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Intelligent Systems}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Nd Cube}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Nintendo Software Technology}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Nintendo, Spike Chunsoft}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Nintendo"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Paradox Development Studio}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Paradox Interactive"}\NormalTok{)}
+
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{PLAYGROUND, Playground Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Playground Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Retro Studios, Entertainment Analysis \& Development Division}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Retro Studios"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Rockstar Leeds}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Rockstar Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Rockstar North}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Rockstar Studios"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Rockstar San Diego}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Rockstar Studios"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Sanzaru Games, Sanzaru Games, Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sanzaru Games"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{SCE Japan Studio, comcept}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCE Studio"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{SCE Santa Monica}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCE Studio"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{SCE Studio Cambridge}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCE Studio"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{SCE Japan Studio}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCE Studio"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{SCEA San Diego Studios}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCEA"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{SCEA, Zindagi Games}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCEA"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{SCEE London Studio}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"SCEE"}\NormalTok{)}
+
+\NormalTok{gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer }\OtherTok{\textless{}{-}} \FunctionTok{recode}\NormalTok{(gamesales2010\_2016}\SpecialCharTok{$}\NormalTok{Developer, }\StringTok{\textasciigrave{}}\AttributeTok{Sega Studios San Francisco}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Sega Toys}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Sega, Dimps Corporation}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Sega, French{-}Bread}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Sega, Sonic Team}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{, }\AttributeTok{Snapdragon =} \StringTok{"Snap Dragon Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Sonic Team}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sega"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Sony Bend}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sony Interactive Entertainment"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Sony Online Entertainment}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Sony Interactive Entertainment"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Spike Chunsoft}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Spike"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Spike Chunsoft Co. Ltd., Spike Chunsoft}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Spike"}\NormalTok{,}
+    \AttributeTok{Tecmo =} \StringTok{"Tecmo Koei Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Tecmo Koei Canada}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Tecmo Koei Games"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{THQ Australia}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"THQ"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{THQ Digital Studio Phoenix}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"THQ"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Casablanca}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Milan}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Montpellier}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Montreal}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Osaka}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Paris}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Paris, Ubisoft Montpellier}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Quebec}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Reflections}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Reflections, Ivory Tower}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Romania}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Sofia}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Toronto}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft Vancouver}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft, FunHouse}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{Ubisoft, Ludia Inc.}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Ubisoft, Ubisoft Montreal}\StringTok{\textasciigrave{}} \OtherTok{=} \StringTok{"Ubisoft"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Because of how much values are in the Developer column there was many
+values that needed to be changed in the dataset.
+
+4.7 Since we have recoded the values in the Developers column we can now
+calculate the global revenue based on the developer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dev\_global }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We want to filter out any unknown Developers as there are so few NA}
+    \CommentTok{\# developers that will affect our variables.}
+\FunctionTok{filter}\NormalTok{(Developer }\SpecialCharTok{!=} \StringTok{"N/A"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We will then group the columns according to the value in the developer}
+    \CommentTok{\# columns.}
+\FunctionTok{group\_by}\NormalTok{(Developer) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We sum up the total global sales and NA sales of each developers games}
+    \CommentTok{\# earned.}
+\FunctionTok{summarise}\NormalTok{(}\AttributeTok{global\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We then arrange each row in descending order based on the global\_total.}
+\FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(global\_total)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We use the slice\_head() function to take ONLY the top five most}
+    \CommentTok{\# profitable developers.}
+\FunctionTok{slice\_head}\NormalTok{(}\AttributeTok{n =} \DecValTok{5}\NormalTok{)}
+\CommentTok{\# We preview the data set.}
+\FunctionTok{head}\NormalTok{(dev\_global)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   Developer        global_total
+##   <chr>                   <dbl>
+## 1 EA Games                209. 
+## 2 Ubisoft                 183. 
+## 3 Nintendo                 95.0
+## 4 Rockstar Studios         75.7
+## 5 Treyarch                 58.4
+\end{verbatim}
+
+4.8 Finally, we want to determine the video game categories that are
+mainly developed by the top three developers and how the revenue in
+these categories differ.
+
+From the previous example we were able to already determine the top 5
+developers, so if we use the information from the previous table we know
+that ``EA Games'', ``Ubisoft'', ``Nintendo'', ``Rockstar Studios'', and
+``Treyarch'' are the top five developers, this allows us to create a new
+table which filters any developers that aren't those three developers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We create a table which shows video games where the developers are the top}
+\CommentTok{\# five developers.}
+\NormalTok{developer\_genre\_sale }\OtherTok{\textless{}{-}}\NormalTok{ gamesales2010\_2016 }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(Developer }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"EA Games"}\NormalTok{, }\StringTok{"Ubisoft"}\NormalTok{, }\StringTok{"Nintendo"}\NormalTok{, }\StringTok{"Rockstar Studios"}\NormalTok{,}
+        \StringTok{"Treyarch"}\NormalTok{))}
+\CommentTok{\# We use this to preview the data set.}
+\FunctionTok{head}\NormalTok{(developer\_genre\_sale)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 16
+##   Name     Platf~1 Year_~2 Genre Publi~3 NA_Sa~4 EU_Sa~5 JP_Sa~6 Other~7 Globa~8
+##   <chr>    <chr>   <chr>   <chr> <chr>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+## 1 Grand T~ PlaySt~ 2013    Acti~ Take-T~    7.02    9.09    0.98    3.96    21.0
+## 2 Grand T~ Xbox    2013    Acti~ Take-T~    9.66    5.14    0.06    1.41    16.3
+## 3 Call of~ Xbox    2010    Shoo~ Activi~    9.7     3.68    0.11    1.13    14.6
+## 4 Call of~ PlaySt~ 2012    Shoo~ Activi~    4.99    5.73    0.65    2.42    13.8
+## 5 Call of~ Xbox    2012    Shoo~ Activi~    8.25    4.24    0.07    1.12    13.7
+## 6 Call of~ PlaySt~ 2010    Shoo~ Activi~    5.99    4.37    0.48    1.79    12.6
+## # ... with 6 more variables: Critic_Score <dbl>, Critic_Count <dbl>,
+## #   User_Score <dbl>, User_Count <dbl>, Developer <chr>, Rating <chr>, and
+## #   abbreviated variable names 1: Platform, 2: Year_of_Release, 3: Publisher,
+## #   4: NA_Sales, 5: EU_Sales, 6: JP_Sales, 7: Other_Sales, 8: Global_Sales
+\end{verbatim}
+
+Now that we have isolated the video games that are developed by the top
+five developers we can now group all the data by genre and developer and
+calculate the global sale and NA sale based on the the the genre. but
+first we must confirm the amount of N/A values in our Genre column to
+see if those N/A's will affect our results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use is.na() to determine if any values in Genre is N/A. Then use sum() to}
+\CommentTok{\# count the exact number of N/A values.}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(developer\_genre\_sale}\SpecialCharTok{$}\NormalTok{Genre))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Fortunately, there is no N/A variables in the Genre column so we can
+continue on with manipulating the data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We store the developer\_genre\_sale data into df.}
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ developer\_genre\_sale }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We then group by Developer and Genre.}
+\FunctionTok{group\_by}\NormalTok{(Developer, Genre) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We summarise the NA and Global total for each category based on}
+    \CommentTok{\# developer.}
+\FunctionTok{summarise}\NormalTok{(}\AttributeTok{developer\_glbl\_total =} \FunctionTok{sum}\NormalTok{(Global\_Sales), }\AttributeTok{developer\_NA\_total =} \FunctionTok{sum}\NormalTok{(NA\_Sales)) }\SpecialCharTok{\%\textgreater{}\%}
+    \CommentTok{\# We arrange the order in alphabetical order using the Developer column.}
+\FunctionTok{arrange}\NormalTok{(Developer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Developer'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We preview the data set.}
+\FunctionTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 4
+## # Groups:   Developer [1]
+##   Developer Genre     developer_glbl_total developer_NA_total
+##   <chr>     <chr>                    <dbl>              <dbl>
+## 1 EA Games  Action                    5.3                3.55
+## 2 EA Games  Adventure                 0.32               0.17
+## 3 EA Games  Fighting                  2.61               1.24
+## 4 EA Games  Platform                  0.57               0.21
+## 5 EA Games  Racing                    1.56               0.62
+## 6 EA Games  Shooter                  49.7               23.1
+\end{verbatim}
+
+\hypertarget{analyzing}{%
+\subsection{5. Analyzing}\label{analyzing}}
+
+Now that we have cleaned the data set and explored the data set we can
+now analyze the data set using visualization. In this section we will
+use multiple different graphs which helps us identify and analyze our
+data to help the client understand where they would receive the most
+profit.
+
+5.1 In order to be able to answer our first question, we must first
+determine the most profitable platform and the rate of change between
+sales of each platform since 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create our graph, the aes() function is used to}
+\CommentTok{\# set the aesthetics of the plot. we set our x value to Platform and our Y}
+\CommentTok{\# value to NA\_total. we also use the reorder() function to reorder the graph}
+\CommentTok{\# from smallest to greatest.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ platform\_NA\_Sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Platform, NA\_total), }\AttributeTok{y =}\NormalTok{ NA\_total)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"NA sales by Platform"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Platform"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"NA Sales"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# labs() is used to changes the labels in various parts of the chart. Both the}
+\CommentTok{\# X and Y axis changing their names, as well as the title. theme() helps change}
+\CommentTok{\# non{-}data elements of a chart. In this case adding a change to Platform’s axis}
+\CommentTok{\# by utilizing element\_text() to change the look of texts, adding an angle and}
+\CommentTok{\# using hjust to control horizontal justification)}
+\end{Highlighting}
+\end{Shaded}
+
+This code produces the above graph in which it displays the sum of all
+Platforms in the 2010 to 2016 range.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create our graph, the aes() function is used to}
+\CommentTok{\# set the aesthetics of the plot. we set our x value to Year\_of\_Release, our Y}
+\CommentTok{\# value to NA\_total, and fill based on platform.}
+\FunctionTok{ggplot}\NormalTok{(platform\_SalesbyYear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year\_of\_Release, }\AttributeTok{y =}\NormalTok{ NA\_total, }\AttributeTok{fill =}\NormalTok{ Platform)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Total NA sales by Video Game Platform (2010{-}2016)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{y =} \StringTok{"NA Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(In millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# labs() is used to changes the labels in various parts of the chart. Both the}
+\CommentTok{\# X and Y axis changing their names, as well as the title.}
+\end{Highlighting}
+\end{Shaded}
+
+This code creates a bar graph that breaks up the total amount of NA
+sales for each of the different years of each different Platform.
+
+Analysis: Overall, from these graphs we can see that Xbox is the most
+profitable between all these platforms. However, compared to 2010 when
+it was at its highest, we are able to see that the sales for Xbox has
+been steadily declining same goes for they other platforms as well. But,
+compared to other platforms PC has had the least amount of sales, and
+have seen that by 2016 PlayStation had they highest sells.
+
+5.2 To determine the most profitable platform globally we must first
+analyze the total sales made between 2010 and 2016 as well as analyzing
+the rate of change between these platforms.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create our graph, the aes() function is used to}
+\CommentTok{\# set the aesthetics of the plot. we set our x value to Platform, and our y}
+\CommentTok{\# value to glbl\_total.}
+\FunctionTok{ggplot}\NormalTok{(platform\_glbl\_sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Platform, }\AttributeTok{y =}\NormalTok{ glbl\_total, }\AttributeTok{color =}\NormalTok{ Platform)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{geom\_segment}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Platform, }\AttributeTok{xend =}\NormalTok{ Platform,}
+    \AttributeTok{y =} \DecValTok{0}\NormalTok{, }\AttributeTok{yend =}\NormalTok{ glbl\_total)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Global Sales by Platform"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Platform"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Global Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(in millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# geom\_point() sets a point at the value of each platforms global sales.}
+\CommentTok{\# geom\_segment() creates lines at our platforms and reaches its total amount.}
+\CommentTok{\# We use labs() to rename the x and y axis as well as our title.}
+\end{Highlighting}
+\end{Shaded}
+
+This code generates a lollipop graph in which it displays the total
+global sales of each platform in 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ platform\_SalesbyYear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \DecValTok{0}\NormalTok{, }\AttributeTok{y =}\NormalTok{ glbl\_total, }\AttributeTok{fill =}\NormalTok{ Platform)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Year\_of\_Release) }\SpecialCharTok{+} \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Global Sales by Platform"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-32-1.pdf}
+This code generates pie charts which shows the difference in sales
+between each platform from 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ggplot() is used to create the graph, and set the aesthetics of the graph.}
+\CommentTok{\# geom\_point() is used to create a scatter plot of each platforms sales from}
+\CommentTok{\# 2010 to 2016.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ platform\_SalesbyYear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year\_of\_Release, }\AttributeTok{y =}\NormalTok{ glbl\_total, }\AttributeTok{color =}\NormalTok{ Platform)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Platform)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Global Video Game Sales (2010{-}2016)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Global Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(in millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Geom\_line is used to create a line graph and we set the aesthetic of the}
+\CommentTok{\# graph to group by Platform. labs() is used to change the names of our x and y}
+\CommentTok{\# axis as well as the title.}
+\end{Highlighting}
+\end{Shaded}
+
+This code generates a line graph that shows the rate of
+increase/decrease of each Platform from 2010 to 2016.
+
+Analysis: From our charts we can see that globally PlayStation has
+dominated with the most sales, and since 2010 the sales of PlayStation
+has had far more sales compared to other Platforms. We also see that the
+sales of PC has been low compared to other platforms and that the sales
+of Nintendo and Xbox has been steadily decreasing, with Nintendo
+decreasing the most in sales in the past 6 years.
+
+5.3 We now wan to create some visualizations for our third question to
+better understand the NA sales for each genre in 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create a Bar graph that easily represents the}
+\CommentTok{\# highest selling video game Genre for North American sales. We use the aes()}
+\CommentTok{\# function to label the axis’, as well as using fill for discernment between}
+\CommentTok{\# Genres, we use the reorder() function to arrange the attributes from least to}
+\CommentTok{\# greatest. geom\_bar(stat=”identity”) makes a bar chart and makes the height}
+\CommentTok{\# proportional to the number of cases in each group. Stat identity displays the}
+\CommentTok{\# sum of values in the Sales(NA) column, grouped by Genre.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ genre\_na\_sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Genre, genre\_na\_total), }\AttributeTok{y =}\NormalTok{ genre\_na\_total,}
+    \AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"NA sales by Genre"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Genre"}\NormalTok{, }\AttributeTok{y =} \StringTok{"NA Sales"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# labs() is used to changes the labels in various parts of the chart. Both the}
+\CommentTok{\# X and Y axis changing their names, as well as the title. theme() helps change}
+\CommentTok{\# non{-}data elements of a chart. In this case adding a change to Genre’s axis by}
+\CommentTok{\# utilizing element\_text() to change the look of texts, adding an angle and}
+\CommentTok{\# using hjust to control horizontal justification)}
+\end{Highlighting}
+\end{Shaded}
+
+This code creates a bar graph that displays the overall sum of sales of
+each genre between 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We convert our numeric values in genre\_na\_sales into a percentage of the}
+\CommentTok{\# entire sum and store it into pie\_labels.}
+\NormalTok{pie\_labels }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ genre\_na\_sales}\SpecialCharTok{$}\NormalTok{genre\_na\_total}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(genre\_na\_sales}\SpecialCharTok{$}\NormalTok{genre\_na\_total),}
+    \DecValTok{2}\NormalTok{), }\StringTok{"\%"}\NormalTok{)}
+\CommentTok{\# We use ggplot() to create the graph, the aes() function set’s the aesthetic.}
+\CommentTok{\# Used nothing for X, but for Y we used NA Sales so that it would fill}
+\CommentTok{\# proportionately.We use the reorder() function to reorder the different}
+\CommentTok{\# Genre\textquotesingle{}s from least to greatest. We then filled it by Genre using a rainbow}
+\CommentTok{\# palette. the geom\_col() function is used to create black lines in between our}
+\CommentTok{\# “Slices”.}
+\FunctionTok{ggplot}\NormalTok{(genre\_na\_sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ genre\_na\_total, }\AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ pie\_labels), }\AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{y =} \StringTok{"NA Sales"}\NormalTok{, }\AttributeTok{title =} \StringTok{"NA Sales by Genre"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# geom\_text is used along with aes() embedded to set labels to pie labels and}
+\CommentTok{\# position them accordingly. coord\_polar is used because a pie chart is}
+\CommentTok{\# actually just a stacked bar chart in polar coordinates. Then, we use the labs}
+\CommentTok{\# function to change the name of the y axis and title on the graph.}
+\end{Highlighting}
+\end{Shaded}
+
+This code creates a pie graph, then displays the difference in NA sales
+each genre made out of 100\% of the total sales made between 2010 to
+2016
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ggplot() is used to create the graph, and set the aesthetics of the graph.}
+\CommentTok{\# geom\_point() is used to create a scatter plot of each platforms sales from}
+\CommentTok{\# 2010 to 2016.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ genre\_SalesbyYear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year\_of\_Release, }\AttributeTok{y =}\NormalTok{ NA\_total, }\AttributeTok{color =}\NormalTok{ Genre)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"NA Video Game Sales (2010{-}2016)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{y =} \StringTok{"NA Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(in millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Geom\_line is used to create a line graph and we set the aesthetic of the}
+\CommentTok{\# graph to group by Genre. labs() is used to change the names of our x and y}
+\CommentTok{\# axis as well as the title.}
+\end{Highlighting}
+\end{Shaded}
+
+This code creates a line graph that displays the change of NA sales
+based on each genre over the past 6 years.
+
+Analysis: Overall, we assume that Action is the most profitable video
+game genre compared to the other games, however the sales of action has
+dramatically decreased since 2013. While Shooter games has also
+decreased it was the most profitable video game genre by 2016.
+
+5.4 We now see the total global revenue based on Genre to get a visual
+for which Genre was more profitable all throughout 2010-2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create a Bar graph that easily represents the}
+\CommentTok{\# highest globally selling video game genre. We use the aes() function to label}
+\CommentTok{\# the axis’, as well as using fill for discernment between Genres,}
+\CommentTok{\# geom\_bar(stat=”identity”) makes a bar chart and makes the height proportional}
+\CommentTok{\# to the number of cases in each group. Stat identity displays the sum of}
+\CommentTok{\# values in the Sales(NA) column, grouped by Genre}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ genre\_glbl\_sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Genre, }\AttributeTok{y =}\NormalTok{ genre\_glbl\_total, }\AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Global Sales by Genre"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Genre"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Global Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(In millions)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{,}
+    \AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# labs() is used to changes the labels in various parts of the chart. Both the}
+\CommentTok{\# X and Y axis changing their names, as well as the title. theme() helps change}
+\CommentTok{\# non{-}data elements of a chart. In this case adding a change to Genre’s axis by}
+\CommentTok{\# utilizing element\_text() to change the look of texts, adding an angle and}
+\CommentTok{\# using hjust to control horizontal justification}
+\end{Highlighting}
+\end{Shaded}
+
+This code generates a bar graph that displays the total Global sales of
+each video game genre between 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We convert our numerical values into percentages, then store into pvgsg.}
+\NormalTok{PVGSG }\OtherTok{\textless{}{-}}\NormalTok{ genre\_glbl\_sales }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{percentage =} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{round}\NormalTok{(genre\_glbl\_total}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(genre\_glbl\_total) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{,}
+        \DecValTok{2}\NormalTok{), }\StringTok{"\%"}\NormalTok{))}
+\NormalTok{PVGSG }\OtherTok{\textless{}{-}}\NormalTok{ PVGSG }\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(genre\_glbl\_total))}
+
+\CommentTok{\# We use ggplot() to create a bar chart, then use aes() to set the parameters}
+\CommentTok{\# for x and y axis, and use geom\_bar() to create a bar chart and then set the}
+\CommentTok{\# style for to fill.}
+\FunctionTok{ggplot}\NormalTok{(PVGSG, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ Genre, }\AttributeTok{y =}\NormalTok{ genre\_glbl\_total, }\AttributeTok{x =} \StringTok{""}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{,}
+    \AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-38-1.pdf}
+This code displays a stacked bar graph with a couple of functions at
+play.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We convert our numeric values in genre\_glbl\_sales into a percentage of the}
+\CommentTok{\# entire sum and store it into pie\_labels2.}
+\NormalTok{pie\_labels2 }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ genre\_glbl\_sales}\SpecialCharTok{$}\NormalTok{genre\_glbl\_total}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(genre\_glbl\_sales}\SpecialCharTok{$}\NormalTok{genre\_glbl\_total),}
+    \DecValTok{2}\NormalTok{), }\StringTok{"\%"}\NormalTok{)}
+\CommentTok{\# We use ggplot() to create the graph, the aes() function set’s the aesthetic.}
+\CommentTok{\# Used nothing for X, but for Y we used genre\_glbl\_total so that it would fill}
+\CommentTok{\# proportionately.We use the reorder() function to reorder the different}
+\CommentTok{\# Genre\textquotesingle{}s from least to greatest. We then filled it by Genre using a rainbow}
+\CommentTok{\# palette. the geom\_col() function is used to create black lines in between our}
+\CommentTok{\# “Slices”.}
+\FunctionTok{ggplot}\NormalTok{(genre\_glbl\_sales, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ genre\_glbl\_total, }\AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ pie\_labels2), }\AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# geom\_text is used along with aes() embedded to set labels to pie labels and}
+\CommentTok{\# position them accordingly. coord\_polar is used because a pie chart is}
+\CommentTok{\# actually just a stacked bar chart in polar coordinates. Then, we use the labs}
+\CommentTok{\# function to change the name of the y axis and title on the graph.}
+\end{Highlighting}
+\end{Shaded}
+
+This code creates a pie chart in which it displays the sum of global
+sale of video games between 2010 to 2016 in a percentage of the total
+sales made by genre.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ggplot() is used to create the graph, and set the aesthetics of the graph.}
+\CommentTok{\# geom\_point() is used to create a scatter plot of each platforms sales from}
+\CommentTok{\# 2010 to 2016.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ genre\_SalesbyYear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year\_of\_Release, }\AttributeTok{y =}\NormalTok{ glbl\_total, }\AttributeTok{color =}\NormalTok{ Genre)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Global Video Game Sales (2010{-}2016)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Global Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(in millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Geom\_line is used to create a line graph and we set the aesthetic of the}
+\CommentTok{\# graph to group by Genre. labs() is used to change the names of our x and y}
+\CommentTok{\# axis as well as the title.}
+\end{Highlighting}
+\end{Shaded}
+
+This line creates a line chart that shows the decrease/increase of
+gloabl video game sales each year.
+
+Analysis: Just like our previous analysis with question 3, we see that
+similar to NA sales Action is also the most profitable genre, however
+over the course of 6 years the sales of Action games have decreased
+dramatically and eventually shooter has the most sales in 2016.
+
+5.5 We know the global and NA revenue for each of the top five
+developers, but now we want to create some visuals, to get a better
+understanding of their profit within 2010 to 2016.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package to create our graph, the aes() function is used to}
+\CommentTok{\# set the aesthetics of the plot. we set our x value to Developer and our Y}
+\CommentTok{\# value to NA sale. we also use the reorder() function to reorder the graph}
+\CommentTok{\# from smallest to greatest.}
+
+\FunctionTok{ggplot}\NormalTok{(dev\_global, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Developer, global\_total), }\AttributeTok{y =}\NormalTok{ global\_total, }\AttributeTok{fill =}\NormalTok{ Developer)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 5 Developer Global Sales"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Developer"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Global Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(In millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The geom\_bar() function creates a bar plot using the \textquotesingle{}identity\textquotesingle{} statistical}
+\CommentTok{\# transformation.The theme() function is used to customize the appearance of}
+\CommentTok{\# the plot. The axis.text.x argument is set to element\_text() to change the}
+\CommentTok{\# angle of the x{-}axis labels to 45 degrees and set the horizontal justification}
+\CommentTok{\# to 1 (right align).The labs() function sets the plot title to \textquotesingle{}Top 5}
+\CommentTok{\# Developers by Global Sales\textquotesingle{}, and labels the x{-}axis \textquotesingle{}Developer\textquotesingle{} and the y{-}axis}
+\CommentTok{\# \textquotesingle{}Global Game Sales (in millions)\textquotesingle{}.}
+\end{Highlighting}
+\end{Shaded}
+
+Overall, this code generates a bar chart that ranks the top 5 video game
+developers by their total global sales across all regions. The bars are
+ordered by the sum of sales from all regions for each developer. The
+x-axis labels are angled and right aligned for better readability.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# we convert our numeric values in genre\_glbl\_sales into a percentage of the}
+\CommentTok{\# entire sum and store it into pie\_labels2.}
+\NormalTok{pie\_labels3 }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\FunctionTok{round}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ dev\_global}\SpecialCharTok{$}\NormalTok{global\_total}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(dev\_global}\SpecialCharTok{$}\NormalTok{global\_total),}
+    \DecValTok{2}\NormalTok{), }\StringTok{"\%"}\NormalTok{)}
+\CommentTok{\# The aes() function is setting the aesthetics of the plot. The x{-}axis is set}
+\CommentTok{\# to an empty string, which means there will be no x{-}axis label. The y{-}axis is}
+\CommentTok{\# set to the sum of sales from all regions. The fill aesthetic is set to the}
+\CommentTok{\# Developer column. The geom\_col() function creates a pie chart using the}
+\CommentTok{\# \textquotesingle{}identity\textquotesingle{} statistical transformation. The width argument is set to 1 to}
+\CommentTok{\# remove the space between the bars, and the color argument is set to \textquotesingle{}black\textquotesingle{}}
+\CommentTok{\# to add a white border around each bar. The coord\_polar() function is used to}
+\CommentTok{\# convert the plot to a polar coordinate system. The \textquotesingle{}y\textquotesingle{} argument specifies}
+\CommentTok{\# that the y{-}axis values should be used to determine the radial distance of}
+\CommentTok{\# each bar from the center of the plot. The start argument is set to 0 to align}
+\CommentTok{\# the first bar with the 12 o\textquotesingle{}clock position.}
+\FunctionTok{ggplot}\NormalTok{(dev\_global, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ global\_total, }\AttributeTok{fill =}\NormalTok{ Developer)) }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,}
+    \AttributeTok{width =} \DecValTok{1}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ pie\_labels3),}
+    \AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{" Top 5 Developer Sales"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in geom_col(stat = "identity", width = 1, color = "black"): Ignoring
+## unknown parameters: `stat`
+\end{verbatim}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The geom\_text() function is used to sum up the percentage each of these five}
+\CommentTok{\# Developers make globally. The theme\_void() function removes all the axis}
+\CommentTok{\# labels, ticks, and grid lines, leaving only the bars.The labs() function sets}
+\CommentTok{\# the plot title to \textquotesingle{}Top 5 Developer Sales\textquotesingle{}.}
+\end{Highlighting}
+\end{Shaded}
+
+Overall, this code generates a pie chart that ranks the top 5 video game
+developers by their total global sales across all regions. The bars are
+arranged radially, with the outermost bar representing the developer
+with the highest total sales. The plot has no axis labels or grid lines,
+giving it a minimalist look.
+
+Analysis: The first bar graph shows the order of the top 5 game
+developers in terms of the number of game copies sold. In ascending
+order, the top 5 game developers are Ubisoft, EA Sports, Nintendo,
+Treyarch, and Rockstar North. The pie chart provides another
+visualization for this ranking.
+
+5.6 We are now going to create some visuals for our sixth question in
+order to analyze our findings. developer\_genre\_sales
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the ggplot2 package in R to show the top 5 video game genres for each}
+\CommentTok{\# of the top 5 video game developers in terms of global sales. The aes()}
+\CommentTok{\# function is used to set the aesthetics of the plot. The x{-}axis is set to the}
+\CommentTok{\# Developer column, the y{-}axis is set to the Global\_Total column, and the fill}
+\CommentTok{\# aesthetic is set to the Genre column. The geom\_bar() function creates a bar}
+\CommentTok{\# plot using the \textquotesingle{}identity\textquotesingle{} statistical transformation, which means the bar}
+\CommentTok{\# heights correspond to the values in the Global\_Total column.}
+\FunctionTok{ggplot}\NormalTok{(df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Developer, }\AttributeTok{y =}\NormalTok{ developer\_glbl\_total, }\AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 5 Developer Sales by Genre"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Developer"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Global Game Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(In millions)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The theme() function sets the x{-}axis text to a 45{-}degree angle for better}
+\CommentTok{\# readability, and the labs() function sets the plot title, x{-}axis label, and}
+\CommentTok{\# y{-}axis label.}
+\end{Highlighting}
+\end{Shaded}
+
+Overall, this code generates a stacked bar chart that shows the
+contribution of each video game genre to the global sales of the top 5
+video game developers. Each bar is divided into segments corresponding
+to the sales of each genre, and the height of each bar corresponds to
+the total global sales of the developer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The aes() function is used to set the aesthetics of the plot. The x{-}axis is}
+\CommentTok{\# set to 0, the y{-}axis is set to the Global\_Total column, and the fill}
+\CommentTok{\# aesthetic is set to the Genre column. The geom\_col() function creates a}
+\CommentTok{\# column plot with position set to \textquotesingle{}fill\textquotesingle{}, which stacks the bars so that each}
+\CommentTok{\# bar fills the available vertical space.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \DecValTok{0}\NormalTok{, }\AttributeTok{y =}\NormalTok{ developer\_glbl\_total, }\AttributeTok{fill =}\NormalTok{ Genre)) }\SpecialCharTok{+} \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{position =} \StringTok{"fill"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Developer) }\SpecialCharTok{+} \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 5 Developer sales by Genre"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The facet\_wrap() function is used to split the plot into multiple panels, one}
+\CommentTok{\# for each developer. The coord\_polar() function converts the plot to polar}
+\CommentTok{\# coordinates, which makes it easier to compare the relative contributions of}
+\CommentTok{\# each video game genre across the different developers. The theme\_void()}
+\CommentTok{\# function sets the plot to have no background or axis labels, and the labs()}
+\CommentTok{\# function sets the plot title.}
+\end{Highlighting}
+\end{Shaded}
+
+Overall, this code generates a polar bar chart that shows the relative
+contribution of each video game genre to the global sales of the top 5
+video game developers. The chart is split into multiple panels, one for
+each developer, making it easy to compare the contribution of each genre
+across the different developers.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The aes() function is used to set the aesthetics of the plot. The x{-}axis is}
+\CommentTok{\# set to Genre, the y{-}axis is set to the Global\_Total column, and the color}
+\CommentTok{\# aesthetic is set to the Developer column. The geom\_point() function creates a}
+\CommentTok{\# scatter plot graph.}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Genre, }\AttributeTok{y =}\NormalTok{ developer\_glbl\_total, }\AttributeTok{colour =}\NormalTok{ Developer)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Top 5 Developer sales by Genre"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Genre"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Global Game Sales}\SpecialCharTok{\textbackslash{}n}\StringTok{(In millions)"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{coord\_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Video-Game-Sales-Study--Phase-1-_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# We use the labs() function to label our title, x{-}axis, and y{-}axis. The}
+\CommentTok{\# coordflip() flips the x and y axis, so that our x{-}axis value appear on the}
+\CommentTok{\# y{-}axis and our y{-}axis values appear on the x{-}axis.}
+\end{Highlighting}
+\end{Shaded}
+
+Overall this code creates a scatter plot that shows how most categories
+are similar in sales. However it also shows that When it comes to Sports
+games, EA Games make far more profit then any other categories.
+
+Analysis: These visualizations represent the sales the top 5 game
+developers have earned per video game genre. Rockstar North and Treyarch
+develop exclusively Action and Shooter games respectively, meaning they
+have only sold games in those genres. EA Sports is almost the same
+however, they have developed at least one game in the racing genre.
+Nonetheless, most of the game copies EA Sports has sold are in the
+sports genre. Ubisoft has more diversity than the previous 3 developers,
+but it is visible that they have sold mostly action games or games that
+do not fall in any of the named genres. Nintendo is visibly the most
+diverse out of the 5 developers in terms of genre, with their most
+successful genre being platforms.
+
+\end{document}

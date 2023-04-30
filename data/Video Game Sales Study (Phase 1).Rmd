@@ -2,9 +2,9 @@
 title: "Video Game Sales Investment Study"
 author: "Matthew Afoakwah, Nathan Cummings, Jaye Evans, Nikola Ignjatovic, Kevin Mainello, Chris Weiner" 
 output:
-  pdf_document: default
-  html_document: default
   word_document: default
+  html_document: default
+  pdf_document: default
 date: "March 28th, 2023"
 ---
 
