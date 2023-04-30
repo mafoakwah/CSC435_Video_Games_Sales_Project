@@ -1,9 +1,4 @@
----
-output:
-  word_document: default
-  html_document: default
-  pdf_document: default
----
+
 library(formatR)
 library(tidyverse) #Used to load tidyverse package into R.
 library(readr) #Used to load readr package in R to use to read CSV file.
@@ -255,5 +250,176 @@ ggplot(data = df, aes(x = 0, y = developer_glbl_total, fill = Genre)) + geom_col
 ggplot(data = df, aes(x = Genre, y = developer_glbl_total, colour = Developer)) +
   geom_point() +
   labs(title = "Top 5 Developer sales by Genre", x = "Genre", y = "Global Game Sales\n(In millions)") + coord_flip()
-  
-  
+
+#We will now begin doing modeling.
+#We load the pakage tidymodels. if not installed used install.packages("tidymodels")
+library(tidymodels) 
+
+
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------------
+#SVM Model
+library(e1071)
+library(caret)
+
+set.seed(1234)
+gamesales2010_2016 <- na.omit(gamesales2010_2016)
+train.index <- sample(nrow(gamesales2010_2016), nrow(gamesales2010_2016) * 0.7)
+train.data <- gamesales2010_2016[train.index, ]
+test.data <- gamesales2010_2016[-train.index, ]
+
+model <- svm(Global_Sales ~ Platform, data = train.data, kernel = "linear", cost = 1)
+
+predictions <- predict(model, newdata = test.data)
+confusionMatrix(predictions, test.data$Global_Sales > 0)
+
+plot(predictions)
+
+plot(model)
+model$bestTune
+mean(model == test.data)
+
+set.seed(1234)
+model1 <- train(Genre ~., data = train.data, method = "svmLinear", trControl = trainControl("cv", number = 10), tuneGrid = expand.grid(C = seq(0, 16, length = 20)), preProcess = c("center", "scale"))
+confusionMatrix(model1, test$Genre)
+#------------------------------------------------------------------------------------------------------
+set.seed(1234)
+genre_SalesbyYear <- na.omit(genre_SalesbyYear)
+
+genre <- genre_SalesbyYear %>%
+  select(Genre, glbl_total)
+train.index <- sample(nrow(genre), nrow(genre) * 0.7)
+train.data <- genre[train.index, ]
+test.data <- genre[-train.index, ]
+
+model1 <- train(Genre ~., data = train.data, method = "svmLinear", trControl = trainControl("cv", number = 10), tuneGrid = expand.grid(C = seq(0, 16, length = 20)), preProcess = c("center", "scale"))
+predicted <- model1 %>%
+  predict(test.data)
+
+head(predicted)
+mean(predicted == test.data$Genre)
+plot(model1)
+plot(predicted)
+
+#--------------------------------------------------------------------------------------------------------
+
+  games <- gamesales2010_2016 %>%
+  select(Genre, Platform, NA_Sales, Global_Sales, Year_of_Release)
+y <- unclass(games$Genre)
+head(y)
+
+#Convert Genre column into a factor then numeric.
+y <- as.numeric(as.factor(games$Genre))
+#install.packages("fastDummies")
+#Load fast dummies packages
+library(fastDummies)
+#Load all variables in column and exclude genre column.
+x <- games %>%
+  select(-Genre)
+
+glimpse(games)
+x <- dummy_cols( x, remove_first_dummy = TRUE)
+
+#We now remove Platform as it is a categorical datatype
+x <- x %>%
+  select(-Platform, -Year_of_Release)
+
+#we now set the parameters
+params <- list(set.seed = 1234, eval_metric = "auc", objective = "binary:logistic")
+
+#now we run xgboost
+#load xgboost library 
+library(xgboost)
+
+#we create our model and use xgboost()
+model <- xgboost(data = as.matrix(x), label = y, params = params, nrounds = 20, verbose = 1)
+#--------------------------------------------------------------------------------------------------
+#Forest Modelling
+
+#install.packages("caret")
+library(randomForest)
+library(caret)
+
+g <- gamesales2010_2016
+g <- na.omit(g)
+
+g$Genre <- as.factor(g$Genre)
+
+
+set.seed(1234)
+trainIndex <- createDataPartition(g$Global_Sales, p = .8, list = FALSE)
+train <- g[trainIndex, ]
+test <- g[-trainIndex, ]
+test <- as.factor(test$Global_Sales)
+test <- as.factor(test$Genre)
+
+model <- randomForest(Global_Sales ~ ., data = train, importance = TRUE, ntree = 200)
+predictions <- predict(model, test)
+confusionMatrix(predictions, test)
+
+mean(predictions == test$Genre)
+
+plot(model)
+
+summary(model)
+#========================================================================================
+g <- select(gamesales2010_2016, c(Genre, Platform, Year_of_Release, NA_Sales, Global_Sales, Developer))
+g <- na.omit(g)
+
+
+model <- lm(Global_Sales ~ ., data = g)
+summary(model)
+plot(model)
+
+#=======================================================================================================
+model1 <- aov(Global_Sales ~ ., data = g)
+plot(model1)
+summary(model1)
+
+p <- predict(model1)
+summary(p)
+plot(p)
+
+ModelFunc <- function(x) {model1$coefficients[1] + x^3*model1$coefficients[2] +
+    x^4*model1$coefficients[3]}
+ggplot(data = g, aes(x = Genre, y = Global_Sales)) + 
+  geom_point() + 
+  stat_function(fun = ModelFunc, color = 'blue', size = 1) + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+#-----------------------------------------------------------------------------------------------------------------
+#Multiple Linear Regression
+x <- games %>%
+  select(Genre, Platform, Global_Sales, Year_of_Release)
+head(x)
+view(x)
+set.seed(1234)
+trainIndex <- createDataPartition(x$Global_Sales, p = .8, list = FALSE)
+train <- x[trainIndex, ]
+test <- x[-trainIndex, ]
+global_model <- lm(formula = Global_Sales ~ Genre + Platform + Year_of_Release, data = train)
+
+
+model_residuals <- global_model$residuals
+hist(model_residuals)
+qqnorm(model_residuals)
+qqline(model_residuals)
+
+plot(global_model)
+
+summary(global_model)
+p <- predict(global_model, test)
+
+
+qqline(p)
+summary(p)
+hist(p)
+mean(global_model == test)
+
+
+
+library(randomForest)
+
+varImp(global_model)
+varImpPlot(global_model)

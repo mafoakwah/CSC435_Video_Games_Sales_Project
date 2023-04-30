@@ -12,11 +12,12 @@ date: "March 28th, 2023"
 library(formatR)
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE, echo = TRUE)
 
+
 ```
 
 ## 1. Scenerio
 
-Suppose their is an investor who wants to invest in a gaming platform. However before the investor invests, they want to know which gaming platform between the years 2010 to 2016 has the best NA, EU, and Global sales. The investor also wants to know what video game category produces the most income between 2010 and 2016 while for each video game platform so that they can better invest their money to better profit themselves in the future.The investor also wants to see what developers create more profitable games and the video game categories those developers mainly develop. The investor wants an indepth analyst on the video game platforms, video game categories, and developers before they invest their money.
+Suppose their is an investor who wants to invest in a gaming platform. However before the investor invests, they want to know which gaming platform between the years 2010 to 2016 has the best NA, EU, and Global sales. The investor also wants to know what video game category produces the most income between 2010 and 2016 while for each video game platform so that they can better invest their money to better profit themselves in the future. The investor also wants to see what developers create more profitable games and the video game categories those developers mainly develop. The investor wants an in-depth analyst on the video game platforms, video game categories, and developers before they invest their money.
 
 ## 2.Preparation
 
@@ -26,7 +27,6 @@ The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that thi
 
 ```{r}
 #install.packages("Tidyverse")
-library(formatR)
   library(tidyverse) #Used to load tidyverse package into R.
   
   library(readr) #Used to load readr package in R to use to read CSV file.
