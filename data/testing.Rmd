@@ -2,9 +2,9 @@
 title: "Video Game Sales Investment Study"
 author: "Matthew Afoakwah, Nathan Cummings, Jaye Evans, Nikola Ignjatovic, Kevin Mainello, Chris Weiner" 
 output:
-  pdf_document: default
-  html_document: default
   word_document: default
+  html_document: default
+  pdf_document: default
 date: "March 28th, 2023"
 ---
 
@@ -13,6 +13,11 @@ library(formatR)
 knitr::opts_chunk$set(tidy.opts = list(width.cutoff = 80), tidy = TRUE, echo = TRUE)
 
 ```
+
+## Abstract
+
+This Project is based on an Investors desire to invest into Video Games. Before the investor can invest it is our job to investigate where the investor should best invest their money in a means that will ultimately benefit the investor. In order to accomplish this we use a Video Game data set in the time frame of 2010 to 2016. We will prepare the data set by exploring it, cleaning it so that we are able to create proper visualizations and models for the investor. At the end of this project we will explain to the investor our findings based on our visualizations and models.
+
 
 ## 1. Scenerio
 
@@ -26,7 +31,7 @@ The data we are using was uploaded to Kaggle by SID_TWR. SID_TWR stated that thi
 
 ```{r}
 #install.packages("Tidyverse")
-library(formatR)
+
   library(tidyverse) #Used to load tidyverse package into R.
   
   library(readr) #Used to load readr package in R to use to read CSV file.
@@ -541,3 +546,158 @@ ggplot(data = df, aes(x = Genre, y = developer_glbl_total, colour = Developer)) 
 Overall this code creates a scatter plot that shows how most categories are similar in sales. However it also shows that When it comes to Sports games, EA Games make far more profit then any other categories.
 
 Analysis: These visualizations represent the sales the top 5 game developers have earned per video game genre. Rockstar North and Treyarch develop exclusively Action and Shooter games respectively, meaning they have only sold games in those genres. EA Sports is almost the same however, they have developed at least one game in the racing genre. Nonetheless, most of the game copies EA Sports has sold are in the sports genre. Ubisoft has more diversity than the previous 3 developers, but it is visible that they have sold mostly action games or games that do not fall in any of the named genres. Nintendo is visibly the most diverse out of the 5 developers in terms of genre, with their most successful genre being platforms.
+
+
+##6. Modelling
+
+After creating our visualization what we want to do is create some models in order to understand the relationship between the models. We will be using five different models in this section, The models used will be Linear Regression, Multiple Linear Regression, Random Forest, Support Vector Regression (SVR),and Support Vector Machine (SVM).
+
+6.1 Linear Regression
+
+The first model we will be using is linear regression and we will be using linear regression to establish a relationship between our dependent variable Global_Sales with our independent variable NA_Sales. What we want to predict is if we can calculate the Global_Sales based on the NA_sales. to start we first create a model using linear regression
+```{r}
+#Using lm() to create a linear regression model using Global_Sales as dependent variable and NA_sales as independent variable. 
+global_na_sales_model <- lm(formula = Global_Sales ~ NA_Sales , data = gamesales2010_2016)
+#Summary() function used to get a summary of the model created. 
+summary(global_na_sales_model)
+plot(global_na_sales_model)
+
+```
+
+We can see that the p-value is less then our alpha 0.05 meaning that our independent variable is significant in our data set. we also see that our R-Squared is 86% which means that our model is a good fit for our data set.
+
+We now will calculate the percentage error to see the error rate of this model. First we will find the Residual Standard Error(RSE) of the model then we will calculate the the mean of  Global_Sales. After which we divide our RSE by the mean and multiply by 100 to find our percentage error as shown in the code below. 
+```{r}
+#We calculate the RSE using sigma.
+rse <- summary(global_na_sales_model)$sigma
+#We calculate the mean of Global_Sales.
+y_mean <- mean(gamesales2010_2016$Global_Sales)
+#We calculate our percentage error.
+perc_error <- (rse / y_mean) * 100
+
+print(perc_error)
+
+```
+
+After calculating the percentage error, we see that we have a high percentage error which indicates that our model is not accurate and is not good to help us predict our data set.
+
+We are going to create another linear regression model where our dependent variable is NA_Sales and our independent variable is Platform.
+```{r}
+#Create a linear Regression model using Global_Sales as dependent variable and Platform as independent variable. 
+lg_model <- lm(formula = Global_Sales ~ Platform , data = gamesales2010_2016)
+summary(lg_model)
+```
+After performing a linear regression we see that the model is significant as it is less then our alpha and that Xbox and PC are also significant as they are less then our alpha 0.05, however PlayStation is not significant in the model as its p-value is larger then our alpha. 
+
+Our R-squared is also very low showing that this model is not a good fit for our data set showing that linear regression is not a good model for this data set.
+
+6.2 Multiple Linear Regression
+
+We have tested the linear regression model, however now we are going to test the multiple linear regression model on our data set on specific independent variables such as Genre, Year_of_Release, and Platform. Since Developer has to many values we will restrict it from our model.
+```{r}
+mreg <- lm(formula = Global_Sales ~ Genre + Year_of_Release + Platform, data = gamesales2010_2016)
+summary(mreg)
+```
+In this model we are using multiple different attributes so we look at our adjusted R-squared, from looking at the adjusted R-squared we see that our R-squared is only 5%. This means the model is not a good fit for our data set and we do not have to proceed any further as multiple linear regression is not a good fit for our data set.
+
+6.3 Random Forest Model
+
+Now, We will attempt the Random forest model in order to see if we can use our data set to make predictions.
+First we will need to load two different packages 
+```{r}
+#Load randomForest package and caret packages
+library(randomForest)
+library(caret)
+```
+
+After we will need to make sure we omit all N/A values and split the data set into our train data and our test data. Then we train our model. After we train our model we will test our model to evaluate its performance and identify any problems such as overfitting.
+```{r}
+g <- gamesales2010_2016
+#Remove N/A values
+g <- na.omit(g) 
+#Make the Genre Column a factor
+g$Genre <- as.factor(g$Genre)
+
+
+set.seed(123)
+#Split the data into train and test
+trainIndex <- createDataPartition(g$Global_Sales, p = .8, list = FALSE)
+train <- g[trainIndex, ]
+test <- g[-trainIndex, ]
+#Run the RandomForest model
+model <- randomForest(Genre ~ ., data = train, importance = TRUE, ntree = 30)
+#Create a prediction
+predictions <- predict(model, test)
+#use Confusion Matrix
+confusionMatrix(predictions, test$Genre)
+
+mean(predictions == test$Genre)
+summary(model)
+plot(model)
+```
+From looking at the results above it can be see that Random Forest modelling is not a good model for our data set either. So we are not able to use this model to help us make predictions or classifications on the data set.
+
+
+6.4 Support Vector Regression (SVR)
+
+We will now try to use SVR to make predictions on our model. To do this what we do is add a new library, then we split our data set like we did with Random Forest. Then we will make all attributes numeric and attempt to do a linear kernel model and then we analyze the model.
+```{r}
+library(e1071)
+
+#Creating a separate data set with Year_of_release and Global_Sales values  
+gamesales2010_2016_model <- gamesales2010_2016[, c("Year_of_Release", "Global_Sales")]
+
+#Partition data into test and training by 80:20
+set.seed(123)
+train_index <- sample(nrow(gamesales2010_2016_model), nrow(gamesales2010_2016_model) * 0.8)
+train_data <- gamesales2010_2016_model[train_index, ]
+test_data <- gamesales2010_2016_model[-train_index, ]
+
+#Making sure all the values in the Year_of_Release column are numberic
+gamesales2010_2016_model$Year_of_Release <- as.numeric(gamesales2010_2016_model$Year_of_Release)
+
+#Calling a tune function to find optimal parameters for the model
+tuned <- tune(svm, Global_Sales ~ Year_of_Release, data = train_data, kernel = "radial", ranges = list(cost = c(0.1, 1, 10), gamma = c(0.01, 0.1, 1)))
+#Building a model with radial kernel and tuned cost and gamma parameters 
+model <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "radial", cost = tuned$best.parameters$cost, gamma = tuned$best.parameters$gamma, type = "eps-regression")
+summary(model)
+
+#Attempting a linear kernel model
+model2 <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "linear")
+summary(model2)
+
+#Attempting a polynomial kernel with degree of 2
+model3 <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "polynomial", degree = 2)
+summary(model3)
+pred <- predict(model3, newdata = test_data)
+
+
+#Analyzing Metrics 
+mse <- mean((pred - test_data$Global_Sales)^2)
+rsq <- 1 - sum((test_data$Global_Sales - pred)^2) / sum((test_data$Global_Sales - mean(test_data$Global_Sales))^2)
+mae <- mean(abs(test_data$Global_Sales - pred))
+print(paste0("Mean Squared Error: ", mse))
+cat("R-squared:", rsq, "\n")
+cat("Mean Absolute Error:", mae, "\n")
+```
+From all the information above it is evident that this model does not fit our data. From doing SVR there is nothing to learn from our model. We can also see that our R-squared is 6% indicating that this model is not fit for our data set.
+
+
+
+
+
+##7. Conclusion
+
+To sum up what we have done, from exploring this data set we can confirm that we are unable to use modelling to make any predictions or classifications. This shows that there exist some data sets which modelling can not help with. The reason for the failure in modelling is because there is no relation between any of the columns, this makes it hard to determine if we can use any dependent variables to determine our independent variable or vice versa.
+
+Although we can see that modelling does not work on this data set, one thing that can be seen is that this data set works really well with visualizations. Though we can not use modelling to predict in this data set we are able to use visualizations to show the trends between different attributes in our data set. We are also able to determine different things from our data set as well.
+
+In order to solve our clients problem, we attempted to use modelling to make predictions but failed as modelling does not fit this data set. However we were able to use visualizations, in these visualizations we were able to get some insight from the data and was able to determine that though Action games are the most profitable games between 2010 to 2016 in NA Sales and Global Sales we see a huge trend of the sales of Action Games declining, and if the client is interested in investing based on a genre the best genre to invest in would be Shooter since compared to other genres its sales globally and in North America has not decreased and was the most profitable genre in 2016.
+
+We can also conclude that if the Developer is interested in which Platform is the most profitable to invest in we would suggest that PlayStation would be the best. The reason being that Though Xbox had the highest sales as a whole between 2010 and 2016, compared to PlayStation, the video game sales that are based on the platform Xbox has decreased dramatically while PlayStation has not decreased as much and by 2016 had been having more video game sales compared to other Platforms.
+
+Also from what we have gathered about the game developers, though we found that EA Games had made the most global sales, we suggest it would be better to invest in Ubisoft which had the second highest sales. This conclusion was based of the fact that Though EA Games made the most money between 2010 to 2016, EA Games profit is mainly from Sports games rather then other different genres. So if a year were to happen where sports games were not popular, EA Games video game Sales would decreases dramatically. Unlike EA Games, Ubisoft has a diversified portfolio where if one video game genre is not doing too well it will not greatly affect its game sales.
+
+
+
+

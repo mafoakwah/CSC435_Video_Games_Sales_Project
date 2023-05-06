@@ -255,171 +255,95 @@ ggplot(data = df, aes(x = Genre, y = developer_glbl_total, colour = Developer)) 
 #We load the pakage tidymodels. if not installed used install.packages("tidymodels")
 library(tidymodels) 
 
+#-----------------------------------------------------------------------------------
+#Models
+#Linear Regression
+#Using lm() to create a linear regression model using Global_Sales as dependent variable and NA_sales as independent variable. 
+global_na_sales_model <- lm(formula = Global_Sales ~ NA_Sales , data = gamesales2010_2016)
+#Summary() function used to get a summary of the model created. 
+summary(global_na_sales_model)
+plot(global_na_sales_model)
+
+#We calculate the RSE using sigma.
+rse <- summary(global_na_sales_model)$sigma
+#We calculate the mean of Global_Sales.
+y_mean <- mean(gamesales2010_2016$Global_Sales)
+#We calculate our percentage error.
+perc_error <- (rse / y_mean) * 100
+
+print(perc_error)
+
+#Create a linear Regression model using Global_Sales as dependent variable and Platform as independent variable. 
+lg_model <- lm(formula = Global_Sales ~ Platform , data = gamesales2010_2016)
+summary(lg_model)
+
+#Multiple Linear Regression
+mreg <- lm(formula = Global_Sales ~ Genre + Year_of_Release + Platform, data = gamesales2010_2016)
+summary(mreg)
 
 
-
-
-
-#-------------------------------------------------------------------------------------------------------------------
-#SVM Model
-library(e1071)
-library(caret)
-
-set.seed(1234)
-gamesales2010_2016 <- na.omit(gamesales2010_2016)
-train.index <- sample(nrow(gamesales2010_2016), nrow(gamesales2010_2016) * 0.7)
-train.data <- gamesales2010_2016[train.index, ]
-test.data <- gamesales2010_2016[-train.index, ]
-
-model <- svm(Global_Sales ~ Platform, data = train.data, kernel = "linear", cost = 1)
-
-predictions <- predict(model, newdata = test.data)
-confusionMatrix(predictions, test.data$Global_Sales > 0)
-
-plot(predictions)
-
-plot(model)
-model$bestTune
-mean(model == test.data)
-
-set.seed(1234)
-model1 <- train(Genre ~., data = train.data, method = "svmLinear", trControl = trainControl("cv", number = 10), tuneGrid = expand.grid(C = seq(0, 16, length = 20)), preProcess = c("center", "scale"))
-confusionMatrix(model1, test$Genre)
-#------------------------------------------------------------------------------------------------------
-set.seed(1234)
-genre_SalesbyYear <- na.omit(genre_SalesbyYear)
-
-genre <- genre_SalesbyYear %>%
-  select(Genre, glbl_total)
-train.index <- sample(nrow(genre), nrow(genre) * 0.7)
-train.data <- genre[train.index, ]
-test.data <- genre[-train.index, ]
-
-model1 <- train(Genre ~., data = train.data, method = "svmLinear", trControl = trainControl("cv", number = 10), tuneGrid = expand.grid(C = seq(0, 16, length = 20)), preProcess = c("center", "scale"))
-predicted <- model1 %>%
-  predict(test.data)
-
-head(predicted)
-mean(predicted == test.data$Genre)
-plot(model1)
-plot(predicted)
-
-#--------------------------------------------------------------------------------------------------------
-
-  games <- gamesales2010_2016 %>%
-  select(Genre, Platform, NA_Sales, Global_Sales, Year_of_Release)
-y <- unclass(games$Genre)
-head(y)
-
-#Convert Genre column into a factor then numeric.
-y <- as.numeric(as.factor(games$Genre))
-#install.packages("fastDummies")
-#Load fast dummies packages
-library(fastDummies)
-#Load all variables in column and exclude genre column.
-x <- games %>%
-  select(-Genre)
-
-glimpse(games)
-x <- dummy_cols( x, remove_first_dummy = TRUE)
-
-#We now remove Platform as it is a categorical datatype
-x <- x %>%
-  select(-Platform, -Year_of_Release)
-
-#we now set the parameters
-params <- list(set.seed = 1234, eval_metric = "auc", objective = "binary:logistic")
-
-#now we run xgboost
-#load xgboost library 
-library(xgboost)
-
-#we create our model and use xgboost()
-model <- xgboost(data = as.matrix(x), label = y, params = params, nrounds = 20, verbose = 1)
-#--------------------------------------------------------------------------------------------------
-#Forest Modelling
-
-#install.packages("caret")
+#Random Forest Model
+#Load randomForest package and caret packages
 library(randomForest)
 library(caret)
-
 g <- gamesales2010_2016
-g <- na.omit(g)
-
+#Remove N/A values
+g <- na.omit(g) 
+#Make the Genre Column a factor
 g$Genre <- as.factor(g$Genre)
 
 
-set.seed(1234)
+set.seed(123)
+#Split the data into train and test
 trainIndex <- createDataPartition(g$Global_Sales, p = .8, list = FALSE)
 train <- g[trainIndex, ]
 test <- g[-trainIndex, ]
-test <- as.factor(test$Global_Sales)
-test <- as.factor(test$Genre)
-
-model <- randomForest(Global_Sales ~ ., data = train, importance = TRUE, ntree = 200)
+#Run the RandomForest model
+model <- randomForest(Genre ~ ., data = train, importance = TRUE, ntree = 30)
+#Create a prediction
 predictions <- predict(model, test)
-confusionMatrix(predictions, test)
+#use Confusion Matrix
+confusionMatrix(predictions, test$Genre)
 
 mean(predictions == test$Genre)
-
-plot(model)
-
-summary(model)
-#========================================================================================
-g <- select(gamesales2010_2016, c(Genre, Platform, Year_of_Release, NA_Sales, Global_Sales, Developer))
-g <- na.omit(g)
-
-
-model <- lm(Global_Sales ~ ., data = g)
 summary(model)
 plot(model)
 
-#=======================================================================================================
-model1 <- aov(Global_Sales ~ ., data = g)
-plot(model1)
-summary(model1)
+#SVR
+library(e1071)
 
-p <- predict(model1)
-summary(p)
-plot(p)
+#Creating a separate data set with Year_of_release and Global_Sales values  
+gamesales2010_2016_model <- gamesales2010_2016[, c("Year_of_Release", "Global_Sales")]
 
-ModelFunc <- function(x) {model1$coefficients[1] + x^3*model1$coefficients[2] +
-    x^4*model1$coefficients[3]}
-ggplot(data = g, aes(x = Genre, y = Global_Sales)) + 
-  geom_point() + 
-  stat_function(fun = ModelFunc, color = 'blue', size = 1) + theme(axis.text.x = element_text(angle = 45, hjust = 1))
-#-----------------------------------------------------------------------------------------------------------------
-#Multiple Linear Regression
-x <- games %>%
-  select(Genre, Platform, Global_Sales, Year_of_Release)
-head(x)
-view(x)
-set.seed(1234)
-trainIndex <- createDataPartition(x$Global_Sales, p = .8, list = FALSE)
-train <- x[trainIndex, ]
-test <- x[-trainIndex, ]
-global_model <- lm(formula = Global_Sales ~ Genre + Platform + Year_of_Release, data = train)
+#Partition data into test and training by 80:20
+set.seed(123)
+train_index <- sample(nrow(gamesales2010_2016_model), nrow(gamesales2010_2016_model) * 0.8)
+train_data <- gamesales2010_2016_model[train_index, ]
+test_data <- gamesales2010_2016_model[-train_index, ]
 
+#Making sure all the values in the Year_of_Release column are numberic
+gamesales2010_2016_model$Year_of_Release <- as.numeric(gamesales2010_2016_model$Year_of_Release)
 
-model_residuals <- global_model$residuals
-hist(model_residuals)
-qqnorm(model_residuals)
-qqline(model_residuals)
+#Calling a tune function to find optimal parameters for the model
+tuned <- tune(svm, Global_Sales ~ Year_of_Release, data = train_data, kernel = "radial", ranges = list(cost = c(0.1, 1, 10), gamma = c(0.01, 0.1, 1)))
+#Building a model with radial kernel and tuned cost and gamma parameters 
+model <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "radial", cost = tuned$best.parameters$cost, gamma = tuned$best.parameters$gamma, type = "eps-regression")
+summary(model)
 
-plot(global_model)
+#Attempting a linear kernel model
+model2 <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "linear")
+summary(model2)
 
-summary(global_model)
-p <- predict(global_model, test)
+#Attempting a polynomial kernel with degree of 2
+model3 <- svm(Global_Sales ~ Year_of_Release, data = train_data, kernel = "polynomial", degree = 2)
+summary(model3)
+pred <- predict(model3, newdata = test_data)
 
 
-qqline(p)
-summary(p)
-hist(p)
-mean(global_model == test)
-
-
-
-library(randomForest)
-
-varImp(global_model)
-varImpPlot(global_model)
+#Analyzing Metrics 
+mse <- mean((pred - test_data$Global_Sales)^2)
+rsq <- 1 - sum((test_data$Global_Sales - pred)^2) / sum((test_data$Global_Sales - mean(test_data$Global_Sales))^2)
+mae <- mean(abs(test_data$Global_Sales - pred))
+print(paste0("Mean Squared Error: ", mse))
+cat("R-squared:", rsq, "\n")
+cat("Mean Absolute Error:", mae, "\n")
