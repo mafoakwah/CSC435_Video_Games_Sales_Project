@@ -1541,4 +1541,52 @@ do not fall in any of the named genres. Nintendo is visibly the most
 diverse out of the 5 developers in terms of genre, with their most
 successful genre being platforms.
 
+\#\#6 Modelling
+
+After creating our visualization what we want to do is create some
+models in order to understand the relationship between the models. We
+will be using four different models in this section, The models used
+will be Linear Regression, Multiple Linear Regression, Forest Decision
+Tree, and Support Vector Machine (SVM).
+
+6.1 Linear Regression
+
+The first model we will be using is linear regression and we will be
+using linear regression to establish a relationship between our
+dependent variable Global\_Sales with our independent variable
+NA\_Sales. What we want to predit is if we can calculate the
+Global\_Sales based on the NA\_sales. to start we first create a model
+using linear regression
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Using lm() to create a linear regression model using Global\_Sales as}
+\CommentTok{\# dependent variable and NA\_sales as independent variable.}
+\NormalTok{global\_na\_sales\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\AttributeTok{formula =}\NormalTok{ Global\_Sales }\SpecialCharTok{\textasciitilde{}}\NormalTok{ NA\_Sales, }\AttributeTok{data =}\NormalTok{ gamesales2010\_2016)}
+\CommentTok{\# Summary() function used to get a summary of the model created.}
+\FunctionTok{summary}\NormalTok{(global\_na\_sales\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Global_Sales ~ NA_Sales, data = gamesales2010_2016)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.3339 -0.0990 -0.0538  0.0146  7.8253 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.081547   0.006709   12.15   <2e-16 ***
+## NA_Sales    1.870823   0.010331  181.09   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.4601 on 5275 degrees of freedom
+## Multiple R-squared:  0.8614, Adjusted R-squared:  0.8614 
+## F-statistic: 3.279e+04 on 1 and 5275 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
 \end{document}

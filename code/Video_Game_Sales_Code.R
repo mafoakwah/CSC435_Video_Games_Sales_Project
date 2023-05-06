@@ -347,3 +347,61 @@ mae <- mean(abs(test_data$Global_Sales - pred))
 print(paste0("Mean Squared Error: ", mse))
 cat("R-squared:", rsq, "\n")
 cat("Mean Absolute Error:", mae, "\n")
+
+
+
+#SVM 
+VGSales <- gamesales2010_2016
+VGSales1 <- VGSales %>% filter(Genre != "")
+
+#Aggregate Sum of NA and EU Sales
+VGSASum <- aggregate(cbind(NA_Sales,EU_Sales) ~ Genre, VGSales1, FUN=sum)
+
+#Create New Class Definition of "Action Type" and "Strategy Type"
+VGSASum %>% mutate(Class=c(1,1,1,-1,-1,-1,1,-1,1,-1,1,-1))
+
+
+View(VGSASum)
+
+
+VGSASum <- VGSASum %>% mutate(Class=c(1,1,1,-1,-1,-1,1,-1,1,-1,1,-1))
+
+#Create Action Definition Variable
+isAction <- c(rep(-1,6), rep(+1,6))
+
+#Create Data Frame For Model
+my.data <- data.frame(NA_Sales= VGSASum['NA_Sales'], EU_Sales= VGSASum['EU_Sales'], Class=as.factor(isAction))
+View(my.data)
+
+
+#Plot Data
+plot(my.data[,-3],col=(3)/2, pch=19); abline(h=0,v=0,lty=3)
+
+#Create SVM Model
+svm.model <- svm(Class ~., data=my.data, type='C-classification', kernel='linear', scale=FALSE)
+summary(svm.model)
+
+#Plot Points for Decision Paramters
+points(my.data[svm.model$index, c(1,2)], col="orange", cex = 2)
+
+w <- t(svm.model$coefs) %*% svm.model$SV
+b <- -svm.model$rho
+abline(a=-b/w[1,2], b=-w[1,1]/w[1,2], col = "blue", lty = 3)
+
+#Set Test Data
+observations <- data.frame(NA_Sales=c(200, 250, 425), EU_Sales=c(200, 300, 195))
+
+#Plot Test Data
+plot(my.data[,-3], col=(isAction+3)/2, pch=19, xlim=c(0,1000), ylim=c(0,600))
+abline(h=0, v=0, lty=3)
+points(observations[1,], col = "green", pch=19)
+points(observations[2,], col = "red", pch=19)
+points(observations[3,], col = "purple", pch=19)
+
+#Predict Data (Data is correct here, small mistake led to inversion of 1 and -1 as assingments. Prediciton is correct
+abline(a=-b/w[1,2], b=-w[1,1]/w[1,2], col = "blue", lty = 3)
+predict(svm.model, observations)
+
+View(my.data)
+View(VGSASum)
+View(my.data)

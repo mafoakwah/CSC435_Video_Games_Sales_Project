@@ -17,8 +17,6 @@ Before we work on our data we first want to load it into R, but first we must ad
 
 ```{r} #install.packages("Tidyverse")
   library(tidyverse) #Used to load tidyverse package into R.
-  
-  library(readr) #Used to load readr package in R to use to read CSV file.
 ```
 
 
